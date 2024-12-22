@@ -34,12 +34,13 @@
             открытьФайлToolStripMenuItem = new ToolStripMenuItem();
             сохранитьФайлToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
-            выйтиToolStripMenuItem = new ToolStripMenuItem();
-            groupBoxValues_YVA = new GroupBox();
-            dataGridView1 = new DataGridView();
+            ToolStripMenuItemExit_YVA = new ToolStripMenuItem();
             строкиToolStripMenuItem = new ToolStripMenuItem();
             включитьРедактированиеToolStripMenuItem = new ToolStripMenuItem();
             включитьДобавлениеудалениеToolStripMenuItem = new ToolStripMenuItem();
+            groupBoxValues_YVA = new GroupBox();
+            dataGridView1 = new DataGridView();
+            buttonAbout_YVA = new Button();
             menuStrip_YVA.SuspendLayout();
             groupBoxValues_YVA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -59,7 +60,7 @@
             // программаToolStripMenuItem
             // 
             программаToolStripMenuItem.BackColor = SystemColors.ActiveBorder;
-            программаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { открытьФайлToolStripMenuItem, сохранитьФайлToolStripMenuItem, toolStripSeparator1, выйтиToolStripMenuItem });
+            программаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { открытьФайлToolStripMenuItem, сохранитьФайлToolStripMenuItem, toolStripSeparator1, ToolStripMenuItemExit_YVA });
             программаToolStripMenuItem.Name = "программаToolStripMenuItem";
             программаToolStripMenuItem.Size = new Size(125, 29);
             программаToolStripMenuItem.Text = "Программа";
@@ -82,30 +83,12 @@
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new Size(267, 6);
             // 
-            // выйтиToolStripMenuItem
+            // ToolStripMenuItemExit_YVA
             // 
-            выйтиToolStripMenuItem.Name = "выйтиToolStripMenuItem";
-            выйтиToolStripMenuItem.Size = new Size(270, 34);
-            выйтиToolStripMenuItem.Text = "Выйти";
-            // 
-            // groupBoxValues_YVA
-            // 
-            groupBoxValues_YVA.Controls.Add(dataGridView1);
-            groupBoxValues_YVA.Location = new Point(12, 45);
-            groupBoxValues_YVA.Name = "groupBoxValues_YVA";
-            groupBoxValues_YVA.Size = new Size(923, 562);
-            groupBoxValues_YVA.TabIndex = 1;
-            groupBoxValues_YVA.TabStop = false;
-            groupBoxValues_YVA.Text = "Данные";
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(6, 30);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(911, 526);
-            dataGridView1.TabIndex = 0;
+            ToolStripMenuItemExit_YVA.Name = "ToolStripMenuItemExit_YVA";
+            ToolStripMenuItemExit_YVA.Size = new Size(270, 34);
+            ToolStripMenuItemExit_YVA.Text = "Выйти";
+            ToolStripMenuItemExit_YVA.Click += buttonExit_YVA_Click;
             // 
             // строкиToolStripMenuItem
             // 
@@ -128,11 +111,41 @@
             включитьДобавлениеудалениеToolStripMenuItem.Size = new Size(377, 34);
             включитьДобавлениеудалениеToolStripMenuItem.Text = "Включить добавление/удаление";
             // 
+            // groupBoxValues_YVA
+            // 
+            groupBoxValues_YVA.Controls.Add(dataGridView1);
+            groupBoxValues_YVA.Location = new Point(12, 45);
+            groupBoxValues_YVA.Name = "groupBoxValues_YVA";
+            groupBoxValues_YVA.Size = new Size(923, 562);
+            groupBoxValues_YVA.TabIndex = 1;
+            groupBoxValues_YVA.TabStop = false;
+            groupBoxValues_YVA.Text = "Данные";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(6, 30);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.Size = new Size(911, 526);
+            dataGridView1.TabIndex = 0;
+            // 
+            // buttonAbout_YVA
+            // 
+            buttonAbout_YVA.FlatStyle = FlatStyle.Popup;
+            buttonAbout_YVA.Location = new Point(1327, 9);
+            buttonAbout_YVA.Name = "buttonAbout_YVA";
+            buttonAbout_YVA.Size = new Size(39, 34);
+            buttonAbout_YVA.TabIndex = 2;
+            buttonAbout_YVA.UseVisualStyleBackColor = true;
+            buttonAbout_YVA.Click += buttonAbout_YVA_Click;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1378, 619);
+            Controls.Add(buttonAbout_YVA);
             Controls.Add(groupBoxValues_YVA);
             Controls.Add(menuStrip_YVA);
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -156,11 +169,12 @@
         private ToolStripMenuItem открытьФайлToolStripMenuItem;
         private ToolStripMenuItem сохранитьФайлToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator1;
-        private ToolStripMenuItem выйтиToolStripMenuItem;
+        private ToolStripMenuItem ToolStripMenuItemExit_YVA;
         private GroupBox groupBoxValues_YVA;
         private DataGridView dataGridView1;
         private ToolStripMenuItem строкиToolStripMenuItem;
         private ToolStripMenuItem включитьРедактированиеToolStripMenuItem;
         private ToolStripMenuItem включитьДобавлениеудалениеToolStripMenuItem;
+        private Button buttonAbout_YVA;
     }
 }
