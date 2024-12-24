@@ -37,30 +37,34 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
         {
             this.Close();
         }
+        private void LoadDataIntoDataGridView(List<object[]> processedData)
+        {
+            // Очистка предыдущих данных
+            dataGridView_YVA.Rows.Clear();
+
+            foreach (var row in processedData)
+            {
+                dataGridView_YVA.Rows.Add(row);
+            }
+        }
         private void buttonLoad_YVA_Click(Object sender, EventArgs e)
         {
             try
             {
                 this.openFileDialog_YVA.ShowDialog();
-                string filePath = openFileDialog_YVA.FileName;
                 DataService ds = new DataService();
-
-                List<string[]> csvData = ds.LoadDataFromFile(filePath);
-                this.dataGridView_YVA.Rows.Clear();
-
-
-                for (int i = 1; i < csvData.Count; i++)
-                {
-
-                    dataGridView_YVA.Rows.Add(csvData[i]);
-
-                }
+                string filePath = openFileDialog_YVA.FileName;
+                
+                var rawData = ds.LoadCsvData(filePath);
+                var processedData = ds.ProcessData(rawData);
+                LoadDataIntoDataGridView(processedData);
+                
 
 
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Не удалось загрузить файл", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Не удалось загрузить файл: " + ex, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             this.SaveFileButton_YVA.Enabled = true;
             this.EditEnableButton_YVA.Enabled = true;
@@ -70,12 +74,28 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
 
 
         }
+        public void buttonAddCustomRows_YVA_Click( object sender, EventArgs e )
+        {
+            using (var inputForm = new FormMultipleRowsAdd())
+            {
+                if (inputForm.ShowDialog() == DialogResult.OK)
+                {
+                    int rowCount = inputForm.RowCount;
+
+                    // Добавление строк в DataGridView
+                    for (int i = 0; i < rowCount; i++)
+                    {
+                        dataGridView_YVA.Rows.Add(0,0,DateTime.Today.ToShortDateString(),0,0,0,"Новый маршрут"); // Добавление строки с примерными данными
+                    }
+                }
+            }
+        }
         public void buttonAddRow_YVA_Click(object sender, EventArgs e)
         {
 
             try
             {
-                dataGridView_YVA.Rows.Add(0, 0, DateTime.Today, 0, 0, 0, "Новый маршрут");
+                dataGridView_YVA.Rows.Add(0, 0, DateTime.Today.ToShortDateString(), 0, 0, 0, "Новый маршрут");
             }
             catch
             {
@@ -149,10 +169,17 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                     dataGridView_YVA.ClearSelection();
                     dataGridView_YVA.Rows[hitTest.RowIndex].Selected = true;
                     ContextMenuStrip contextMenu = new ContextMenuStrip();
-                    ToolStripMenuItem deleteItem = new ToolStripMenuItem("Удалить строку");
-                    deleteItem.Click += (s, ev) => DeleteRow(hitTest.RowIndex);
-                    contextMenu.Items.Add(deleteItem);
+                    ToolStripMenuItem deleteRow = new ToolStripMenuItem("Удалить строку");
+                    ToolStripMenuItem markRow = new ToolStripMenuItem("Выделить строку");
+                    ToolStripMenuItem unmarkRow = new ToolStripMenuItem("Убрать выделение");
+                    deleteRow.Click += (s, ev) => DeleteRow(hitTest.RowIndex);
+                    markRow.Click += (s, ev) => dataGridView_YVA.Rows[hitTest.RowIndex].DefaultCellStyle.BackColor = Color.GreenYellow;
+                    unmarkRow.Click += (s, ev) => dataGridView_YVA.Rows[hitTest.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    contextMenu.Items.Add(deleteRow);
+                    contextMenu.Items.Add(markRow);
+                    contextMenu.Items.Add(unmarkRow);
                     contextMenu.Show(dataGridView_YVA, e.Location);
+                    
                 }
             }
 
@@ -164,6 +191,36 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                 dataGridView_YVA.Rows.RemoveAt(rowIndex);
             }
         }
+        private void dataGridView_YVA_CellValidate(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if(e.ColumnIndex == 2)
+            {
+                DateTime dateValue;
+                if(!DateTime.TryParseExact(e.FormattedValue.ToString(), "dd.MM.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue))
+                    {
+                    MessageBox.Show("Введите дату в формате дд.мм.гггг", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    e.Cancel = true;
+                }
+                 
+                
+            }
+            if(e.ColumnIndex == 5)
+            {
+                TimeSpan timeValue;
+                
+                if (!TimeSpan.TryParseExact(e.FormattedValue.ToString(), @"hh\:mm\:ss", CultureInfo.InvariantCulture,TimeSpanStyles.None, out timeValue))
+                    {
+                    MessageBox.Show("Введите время в формате чч:мм:сс.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    e.Cancel = true;
+                }
+                else
+                {
+                    dataGridView_YVA.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = timeValue.ToString(@"hh\:mm\:ss");
+                }
+            }
+        }
+        
+        
     }
 }
 

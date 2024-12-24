@@ -150,6 +150,7 @@
             buttonAddCustomRows_YVA.Name = "buttonAddCustomRows_YVA";
             buttonAddCustomRows_YVA.Size = new Size(466, 34);
             buttonAddCustomRows_YVA.Text = "Добавить произвольное количество строк";
+            buttonAddCustomRows_YVA.Click += buttonAddCustomRows_YVA_Click;
             // 
             // groupBoxValues_YVA
             // 
@@ -181,6 +182,9 @@
             dataGridView_YVA.RowHeadersWidth = 62;
             dataGridView_YVA.Size = new Size(911, 526);
             dataGridView_YVA.TabIndex = 0;
+            
+            dataGridView_YVA.CellValidating += dataGridView_YVA_CellValidate;
+            
             dataGridView_YVA.MouseDown += dataGridView_YVA_MouseDown;
             // 
             // VehicleType
@@ -241,10 +245,12 @@
             // 
             // buttonAbout_YVA
             // 
+            buttonAbout_YVA.BackgroundImage = (Image)resources.GetObject("buttonAbout_YVA.BackgroundImage");
+            buttonAbout_YVA.BackgroundImageLayout = ImageLayout.Center;
             buttonAbout_YVA.FlatStyle = FlatStyle.Popup;
             buttonAbout_YVA.Location = new Point(1327, 9);
             buttonAbout_YVA.Name = "buttonAbout_YVA";
-            buttonAbout_YVA.Size = new Size(39, 34);
+            buttonAbout_YVA.Size = new Size(39, 39);
             buttonAbout_YVA.TabIndex = 2;
             buttonAbout_YVA.UseVisualStyleBackColor = true;
             buttonAbout_YVA.Click += buttonAbout_YVA_Click;
