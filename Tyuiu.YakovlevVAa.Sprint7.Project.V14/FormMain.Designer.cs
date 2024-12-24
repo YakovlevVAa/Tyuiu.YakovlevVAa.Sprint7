@@ -28,22 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             menuStrip_YVA = new MenuStrip();
             программаToolStripMenuItem = new ToolStripMenuItem();
-            открытьФайлToolStripMenuItem = new ToolStripMenuItem();
+            открытьФайлToolStripMenuItem_YVA = new ToolStripMenuItem();
             сохранитьФайлToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             ToolStripMenuItemExit_YVA = new ToolStripMenuItem();
             строкиToolStripMenuItem = new ToolStripMenuItem();
-            включитьРедактированиеToolStripMenuItem = new ToolStripMenuItem();
+            включитьРедактированиеToolStripMenuItem_YVA = new ToolStripMenuItem();
             включитьДобавлениеудалениеToolStripMenuItem = new ToolStripMenuItem();
+            добавлениеСтрокToolStripMenuItem = new ToolStripMenuItem();
+            добавитьСтрокуToolStripMenuItem = new ToolStripMenuItem();
+            добавитьПроизвольноеКоличествоСтрокToolStripMenuItem = new ToolStripMenuItem();
             groupBoxValues_YVA = new GroupBox();
-            dataGridView1 = new DataGridView();
+            dataGridView_YVA = new DataGridView();
             buttonAbout_YVA = new Button();
+            openFileDialog_YVA = new OpenFileDialog();
             menuStrip_YVA.SuspendLayout();
             groupBoxValues_YVA.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_YVA).BeginInit();
             SuspendLayout();
             // 
             // menuStrip_YVA
@@ -60,49 +65,50 @@
             // программаToolStripMenuItem
             // 
             программаToolStripMenuItem.BackColor = SystemColors.ActiveBorder;
-            программаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { открытьФайлToolStripMenuItem, сохранитьФайлToolStripMenuItem, toolStripSeparator1, ToolStripMenuItemExit_YVA });
+            программаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { открытьФайлToolStripMenuItem_YVA, сохранитьФайлToolStripMenuItem, toolStripSeparator1, ToolStripMenuItemExit_YVA });
             программаToolStripMenuItem.Name = "программаToolStripMenuItem";
             программаToolStripMenuItem.Size = new Size(125, 29);
             программаToolStripMenuItem.Text = "Программа";
             // 
-            // открытьФайлToolStripMenuItem
+            // открытьФайлToolStripMenuItem_YVA
             // 
-            открытьФайлToolStripMenuItem.Name = "открытьФайлToolStripMenuItem";
-            открытьФайлToolStripMenuItem.Size = new Size(270, 34);
-            открытьФайлToolStripMenuItem.Text = "Открыть файл";
+            открытьФайлToolStripMenuItem_YVA.Name = "открытьФайлToolStripMenuItem_YVA";
+            открытьФайлToolStripMenuItem_YVA.Size = new Size(245, 34);
+            открытьФайлToolStripMenuItem_YVA.Text = "Открыть файл";
+            открытьФайлToolStripMenuItem_YVA.Click += buttonLoad_YVA_Click;
             // 
             // сохранитьФайлToolStripMenuItem
             // 
             сохранитьФайлToolStripMenuItem.Enabled = false;
             сохранитьФайлToolStripMenuItem.Name = "сохранитьФайлToolStripMenuItem";
-            сохранитьФайлToolStripMenuItem.Size = new Size(270, 34);
+            сохранитьФайлToolStripMenuItem.Size = new Size(245, 34);
             сохранитьФайлToolStripMenuItem.Text = "Сохранить файл";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(267, 6);
+            toolStripSeparator1.Size = new Size(242, 6);
             // 
             // ToolStripMenuItemExit_YVA
             // 
             ToolStripMenuItemExit_YVA.Name = "ToolStripMenuItemExit_YVA";
-            ToolStripMenuItemExit_YVA.Size = new Size(270, 34);
+            ToolStripMenuItemExit_YVA.Size = new Size(245, 34);
             ToolStripMenuItemExit_YVA.Text = "Выйти";
             ToolStripMenuItemExit_YVA.Click += buttonExit_YVA_Click;
             // 
             // строкиToolStripMenuItem
             // 
-            строкиToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { включитьРедактированиеToolStripMenuItem, включитьДобавлениеудалениеToolStripMenuItem });
+            строкиToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { включитьРедактированиеToolStripMenuItem_YVA, включитьДобавлениеудалениеToolStripMenuItem, добавлениеСтрокToolStripMenuItem });
             строкиToolStripMenuItem.Name = "строкиToolStripMenuItem";
             строкиToolStripMenuItem.Size = new Size(87, 29);
             строкиToolStripMenuItem.Text = "Строки";
             // 
-            // включитьРедактированиеToolStripMenuItem
+            // включитьРедактированиеToolStripMenuItem_YVA
             // 
-            включитьРедактированиеToolStripMenuItem.Enabled = false;
-            включитьРедактированиеToolStripMenuItem.Name = "включитьРедактированиеToolStripMenuItem";
-            включитьРедактированиеToolStripMenuItem.Size = new Size(377, 34);
-            включитьРедактированиеToolStripMenuItem.Text = "Включить редактирование";
+            включитьРедактированиеToolStripMenuItem_YVA.Enabled = false;
+            включитьРедактированиеToolStripMenuItem_YVA.Name = "включитьРедактированиеToolStripMenuItem_YVA";
+            включитьРедактированиеToolStripMenuItem_YVA.Size = new Size(377, 34);
+            включитьРедактированиеToolStripMenuItem_YVA.Text = "Включить редактирование";
             // 
             // включитьДобавлениеудалениеToolStripMenuItem
             // 
@@ -111,9 +117,29 @@
             включитьДобавлениеудалениеToolStripMenuItem.Size = new Size(377, 34);
             включитьДобавлениеудалениеToolStripMenuItem.Text = "Включить добавление/удаление";
             // 
+            // добавлениеСтрокToolStripMenuItem
+            // 
+            добавлениеСтрокToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { добавитьСтрокуToolStripMenuItem, добавитьПроизвольноеКоличествоСтрокToolStripMenuItem });
+            добавлениеСтрокToolStripMenuItem.Enabled = false;
+            добавлениеСтрокToolStripMenuItem.Name = "добавлениеСтрокToolStripMenuItem";
+            добавлениеСтрокToolStripMenuItem.Size = new Size(377, 34);
+            добавлениеСтрокToolStripMenuItem.Text = "Добавление строк";
+            // 
+            // добавитьСтрокуToolStripMenuItem
+            // 
+            добавитьСтрокуToolStripMenuItem.Name = "добавитьСтрокуToolStripMenuItem";
+            добавитьСтрокуToolStripMenuItem.Size = new Size(466, 34);
+            добавитьСтрокуToolStripMenuItem.Text = "Добавить строку";
+            // 
+            // добавитьПроизвольноеКоличествоСтрокToolStripMenuItem
+            // 
+            добавитьПроизвольноеКоличествоСтрокToolStripMenuItem.Name = "добавитьПроизвольноеКоличествоСтрокToolStripMenuItem";
+            добавитьПроизвольноеКоличествоСтрокToolStripMenuItem.Size = new Size(466, 34);
+            добавитьПроизвольноеКоличествоСтрокToolStripMenuItem.Text = "Добавить произвольное количество строк";
+            // 
             // groupBoxValues_YVA
             // 
-            groupBoxValues_YVA.Controls.Add(dataGridView1);
+            groupBoxValues_YVA.Controls.Add(dataGridView_YVA);
             groupBoxValues_YVA.Location = new Point(12, 45);
             groupBoxValues_YVA.Name = "groupBoxValues_YVA";
             groupBoxValues_YVA.Size = new Size(923, 562);
@@ -121,14 +147,22 @@
             groupBoxValues_YVA.TabStop = false;
             groupBoxValues_YVA.Text = "Данные";
             // 
-            // dataGridView1
+            // dataGridView_YVA
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(6, 30);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(911, 526);
-            dataGridView1.TabIndex = 0;
+            dataGridView_YVA.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView_YVA.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridView_YVA.Location = new Point(6, 30);
+            dataGridView_YVA.Name = "dataGridView_YVA";
+            dataGridView_YVA.RowHeadersWidth = 62;
+            dataGridView_YVA.Size = new Size(911, 526);
+            dataGridView_YVA.TabIndex = 0;
             // 
             // buttonAbout_YVA
             // 
@@ -139,6 +173,10 @@
             buttonAbout_YVA.TabIndex = 2;
             buttonAbout_YVA.UseVisualStyleBackColor = true;
             buttonAbout_YVA.Click += buttonAbout_YVA_Click;
+            // 
+            // openFileDialog_YVA
+            // 
+            openFileDialog_YVA.FileName = "openFileDialog1";
             // 
             // FormMain
             // 
@@ -157,7 +195,7 @@
             menuStrip_YVA.ResumeLayout(false);
             menuStrip_YVA.PerformLayout();
             groupBoxValues_YVA.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_YVA).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -166,15 +204,19 @@
 
         private MenuStrip menuStrip_YVA;
         private ToolStripMenuItem программаToolStripMenuItem;
-        private ToolStripMenuItem открытьФайлToolStripMenuItem;
+        private ToolStripMenuItem открытьФайлToolStripMenuItem_YVA;
         private ToolStripMenuItem сохранитьФайлToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem ToolStripMenuItemExit_YVA;
         private GroupBox groupBoxValues_YVA;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridView_YVA;
         private ToolStripMenuItem строкиToolStripMenuItem;
-        private ToolStripMenuItem включитьРедактированиеToolStripMenuItem;
+        private ToolStripMenuItem включитьРедактированиеToolStripMenuItem_YVA;
         private ToolStripMenuItem включитьДобавлениеудалениеToolStripMenuItem;
         private Button buttonAbout_YVA;
+        private ToolStripMenuItem добавлениеСтрокToolStripMenuItem;
+        private ToolStripMenuItem добавитьСтрокуToolStripMenuItem;
+        private ToolStripMenuItem добавитьПроизвольноеКоличествоСтрокToolStripMenuItem;
+        private OpenFileDialog openFileDialog_YVA;
     }
 }
