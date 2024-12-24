@@ -16,5 +16,9 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
         {
             InitializeComponent();
         }
+        public void buttonClose_YVA_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

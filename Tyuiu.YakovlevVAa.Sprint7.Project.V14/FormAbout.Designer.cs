@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAbout));
             pictureBoxAbout_YVA = new PictureBox();
             labelAbout_YVA = new Label();
+            buttonClose_YVA = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAbout_YVA).BeginInit();
             SuspendLayout();
             // 
@@ -53,11 +54,22 @@
             labelAbout_YVA.TabIndex = 1;
             labelAbout_YVA.Text = resources.GetString("labelAbout_YVA.Text");
             // 
+            // buttonClose_YVA
+            // 
+            buttonClose_YVA.Location = new Point(640, 404);
+            buttonClose_YVA.Name = "buttonClose_YVA";
+            buttonClose_YVA.Size = new Size(112, 34);
+            buttonClose_YVA.TabIndex = 2;
+            buttonClose_YVA.Text = "Закрыть";
+            buttonClose_YVA.UseVisualStyleBackColor = true;
+            buttonClose_YVA.Click += buttonClose_YVA_Click;
+            // 
             // FormAbout
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonClose_YVA);
             Controls.Add(labelAbout_YVA);
             Controls.Add(pictureBoxAbout_YVA);
             Name = "FormAbout";
@@ -71,5 +83,6 @@
 
         private PictureBox pictureBoxAbout_YVA;
         private Label labelAbout_YVA;
+        private Button buttonClose_YVA;
     }
 }
