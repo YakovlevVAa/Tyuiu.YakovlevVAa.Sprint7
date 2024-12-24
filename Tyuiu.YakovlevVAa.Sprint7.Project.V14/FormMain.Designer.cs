@@ -28,24 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             menuStrip_YVA = new MenuStrip();
             программаToolStripMenuItem = new ToolStripMenuItem();
             открытьФайлToolStripMenuItem_YVA = new ToolStripMenuItem();
-            сохранитьФайлToolStripMenuItem = new ToolStripMenuItem();
+            SaveFileButton_YVA = new ToolStripMenuItem();
             toolStripSeparator1 = new ToolStripSeparator();
             ToolStripMenuItemExit_YVA = new ToolStripMenuItem();
             строкиToolStripMenuItem = new ToolStripMenuItem();
-            включитьРедактированиеToolStripMenuItem_YVA = new ToolStripMenuItem();
-            включитьДобавлениеудалениеToolStripMenuItem = new ToolStripMenuItem();
-            добавлениеСтрокToolStripMenuItem = new ToolStripMenuItem();
-            добавитьСтрокуToolStripMenuItem = new ToolStripMenuItem();
-            добавитьПроизвольноеКоличествоСтрокToolStripMenuItem = new ToolStripMenuItem();
+            EditEnableButton_YVA = new ToolStripMenuItem();
+            EditDisableButton_YVA = new ToolStripMenuItem();
+            EditRowsButton_YVA = new ToolStripMenuItem();
+            buttonAddRow_YVA = new ToolStripMenuItem();
+            buttonAddCustomRows_YVA = new ToolStripMenuItem();
             groupBoxValues_YVA = new GroupBox();
             dataGridView_YVA = new DataGridView();
+            VehicleType = new DataGridViewTextBoxColumn();
+            RouteNumber = new DataGridViewTextBoxColumn();
+            StartDate = new DataGridViewTextBoxColumn();
+            StartStop = new DataGridViewTextBoxColumn();
+            EndStop = new DataGridViewTextBoxColumn();
+            TimeSpanRoute = new DataGridViewTextBoxColumn();
+            Notes = new DataGridViewTextBoxColumn();
             buttonAbout_YVA = new Button();
             openFileDialog_YVA = new OpenFileDialog();
+            saveFileDialogProject_YVA = new SaveFileDialog();
+            contextMenuStripProject_YVA = new ContextMenuStrip(components);
             menuStrip_YVA.SuspendLayout();
             groupBoxValues_YVA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_YVA).BeginInit();
@@ -58,14 +68,14 @@
             menuStrip_YVA.Items.AddRange(new ToolStripItem[] { программаToolStripMenuItem, строкиToolStripMenuItem });
             menuStrip_YVA.Location = new Point(9, 9);
             menuStrip_YVA.Name = "menuStrip_YVA";
-            menuStrip_YVA.Size = new Size(400, 33);
+            menuStrip_YVA.Size = new Size(220, 33);
             menuStrip_YVA.TabIndex = 0;
             menuStrip_YVA.Text = "menuStrip1";
             // 
             // программаToolStripMenuItem
             // 
             программаToolStripMenuItem.BackColor = SystemColors.ActiveBorder;
-            программаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { открытьФайлToolStripMenuItem_YVA, сохранитьФайлToolStripMenuItem, toolStripSeparator1, ToolStripMenuItemExit_YVA });
+            программаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { открытьФайлToolStripMenuItem_YVA, SaveFileButton_YVA, toolStripSeparator1, ToolStripMenuItemExit_YVA });
             программаToolStripMenuItem.Name = "программаToolStripMenuItem";
             программаToolStripMenuItem.Size = new Size(125, 29);
             программаToolStripMenuItem.Text = "Программа";
@@ -77,12 +87,13 @@
             открытьФайлToolStripMenuItem_YVA.Text = "Открыть файл";
             открытьФайлToolStripMenuItem_YVA.Click += buttonLoad_YVA_Click;
             // 
-            // сохранитьФайлToolStripMenuItem
+            // SaveFileButton_YVA
             // 
-            сохранитьФайлToolStripMenuItem.Enabled = false;
-            сохранитьФайлToolStripMenuItem.Name = "сохранитьФайлToolStripMenuItem";
-            сохранитьФайлToolStripMenuItem.Size = new Size(245, 34);
-            сохранитьФайлToolStripMenuItem.Text = "Сохранить файл";
+            SaveFileButton_YVA.Enabled = false;
+            SaveFileButton_YVA.Name = "SaveFileButton_YVA";
+            SaveFileButton_YVA.Size = new Size(245, 34);
+            SaveFileButton_YVA.Text = "Сохранить файл";
+            SaveFileButton_YVA.Click += buttonSave_YVA_Click;
             // 
             // toolStripSeparator1
             // 
@@ -98,44 +109,47 @@
             // 
             // строкиToolStripMenuItem
             // 
-            строкиToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { включитьРедактированиеToolStripMenuItem_YVA, включитьДобавлениеудалениеToolStripMenuItem, добавлениеСтрокToolStripMenuItem });
+            строкиToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { EditEnableButton_YVA, EditDisableButton_YVA, EditRowsButton_YVA });
             строкиToolStripMenuItem.Name = "строкиToolStripMenuItem";
             строкиToolStripMenuItem.Size = new Size(87, 29);
             строкиToolStripMenuItem.Text = "Строки";
             // 
-            // включитьРедактированиеToolStripMenuItem_YVA
+            // EditEnableButton_YVA
             // 
-            включитьРедактированиеToolStripMenuItem_YVA.Enabled = false;
-            включитьРедактированиеToolStripMenuItem_YVA.Name = "включитьРедактированиеToolStripMenuItem_YVA";
-            включитьРедактированиеToolStripMenuItem_YVA.Size = new Size(377, 34);
-            включитьРедактированиеToolStripMenuItem_YVA.Text = "Включить редактирование";
+            EditEnableButton_YVA.Enabled = false;
+            EditEnableButton_YVA.Name = "EditEnableButton_YVA";
+            EditEnableButton_YVA.Size = new Size(346, 34);
+            EditEnableButton_YVA.Text = "Включить редактирование";
+            EditEnableButton_YVA.Click += EditEnableButton_YVA_Click;
             // 
-            // включитьДобавлениеудалениеToolStripMenuItem
+            // EditDisableButton_YVA
             // 
-            включитьДобавлениеудалениеToolStripMenuItem.Enabled = false;
-            включитьДобавлениеудалениеToolStripMenuItem.Name = "включитьДобавлениеудалениеToolStripMenuItem";
-            включитьДобавлениеудалениеToolStripMenuItem.Size = new Size(377, 34);
-            включитьДобавлениеудалениеToolStripMenuItem.Text = "Включить добавление/удаление";
+            EditDisableButton_YVA.Enabled = false;
+            EditDisableButton_YVA.Name = "EditDisableButton_YVA";
+            EditDisableButton_YVA.Size = new Size(346, 34);
+            EditDisableButton_YVA.Text = "Выключить редактирование";
+            EditDisableButton_YVA.Click += EditDisableButton_YVA_Click;
             // 
-            // добавлениеСтрокToolStripMenuItem
+            // EditRowsButton_YVA
             // 
-            добавлениеСтрокToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { добавитьСтрокуToolStripMenuItem, добавитьПроизвольноеКоличествоСтрокToolStripMenuItem });
-            добавлениеСтрокToolStripMenuItem.Enabled = false;
-            добавлениеСтрокToolStripMenuItem.Name = "добавлениеСтрокToolStripMenuItem";
-            добавлениеСтрокToolStripMenuItem.Size = new Size(377, 34);
-            добавлениеСтрокToolStripMenuItem.Text = "Добавление строк";
+            EditRowsButton_YVA.DropDownItems.AddRange(new ToolStripItem[] { buttonAddRow_YVA, buttonAddCustomRows_YVA });
+            EditRowsButton_YVA.Enabled = false;
+            EditRowsButton_YVA.Name = "EditRowsButton_YVA";
+            EditRowsButton_YVA.Size = new Size(346, 34);
+            EditRowsButton_YVA.Text = "Добавление строк";
             // 
-            // добавитьСтрокуToolStripMenuItem
+            // buttonAddRow_YVA
             // 
-            добавитьСтрокуToolStripMenuItem.Name = "добавитьСтрокуToolStripMenuItem";
-            добавитьСтрокуToolStripMenuItem.Size = new Size(466, 34);
-            добавитьСтрокуToolStripMenuItem.Text = "Добавить строку";
+            buttonAddRow_YVA.Name = "buttonAddRow_YVA";
+            buttonAddRow_YVA.Size = new Size(466, 34);
+            buttonAddRow_YVA.Text = "Добавить строку";
+            buttonAddRow_YVA.Click += buttonAddRow_YVA_Click;
             // 
-            // добавитьПроизвольноеКоличествоСтрокToolStripMenuItem
+            // buttonAddCustomRows_YVA
             // 
-            добавитьПроизвольноеКоличествоСтрокToolStripMenuItem.Name = "добавитьПроизвольноеКоличествоСтрокToolStripMenuItem";
-            добавитьПроизвольноеКоличествоСтрокToolStripMenuItem.Size = new Size(466, 34);
-            добавитьПроизвольноеКоличествоСтрокToolStripMenuItem.Text = "Добавить произвольное количество строк";
+            buttonAddCustomRows_YVA.Name = "buttonAddCustomRows_YVA";
+            buttonAddCustomRows_YVA.Size = new Size(466, 34);
+            buttonAddCustomRows_YVA.Text = "Добавить произвольное количество строк";
             // 
             // groupBoxValues_YVA
             // 
@@ -149,20 +163,81 @@
             // 
             // dataGridView_YVA
             // 
+            dataGridView_YVA.AllowUserToAddRows = false;
+            dataGridView_YVA.AllowUserToDeleteRows = false;
             dataGridView_YVA.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridView_YVA.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridView_YVA.Columns.AddRange(new DataGridViewColumn[] { VehicleType, RouteNumber, StartDate, StartStop, EndStop, TimeSpanRoute, Notes });
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridView_YVA.DefaultCellStyle = dataGridViewCellStyle1;
             dataGridView_YVA.Location = new Point(6, 30);
             dataGridView_YVA.Name = "dataGridView_YVA";
+            dataGridView_YVA.ReadOnly = true;
             dataGridView_YVA.RowHeadersWidth = 62;
             dataGridView_YVA.Size = new Size(911, 526);
             dataGridView_YVA.TabIndex = 0;
+            dataGridView_YVA.MouseDown += dataGridView_YVA_MouseDown;
+            // 
+            // VehicleType
+            // 
+            VehicleType.HeaderText = "Тип транспорта";
+            VehicleType.MinimumWidth = 8;
+            VehicleType.Name = "VehicleType";
+            VehicleType.ReadOnly = true;
+            VehicleType.Width = 150;
+            // 
+            // RouteNumber
+            // 
+            RouteNumber.HeaderText = "Номер маршрута";
+            RouteNumber.MinimumWidth = 8;
+            RouteNumber.Name = "RouteNumber";
+            RouteNumber.ReadOnly = true;
+            RouteNumber.Width = 150;
+            // 
+            // StartDate
+            // 
+            StartDate.HeaderText = "Дата введения маршрута";
+            StartDate.MinimumWidth = 8;
+            StartDate.Name = "StartDate";
+            StartDate.ReadOnly = true;
+            StartDate.Width = 150;
+            // 
+            // StartStop
+            // 
+            StartStop.HeaderText = "Начальная остановка";
+            StartStop.MinimumWidth = 8;
+            StartStop.Name = "StartStop";
+            StartStop.ReadOnly = true;
+            StartStop.Width = 150;
+            // 
+            // EndStop
+            // 
+            EndStop.HeaderText = "Конечная остановка";
+            EndStop.MinimumWidth = 8;
+            EndStop.Name = "EndStop";
+            EndStop.ReadOnly = true;
+            EndStop.Width = 150;
+            // 
+            // TimeSpanRoute
+            // 
+            TimeSpanRoute.HeaderText = "Время в пути";
+            TimeSpanRoute.MinimumWidth = 8;
+            TimeSpanRoute.Name = "TimeSpanRoute";
+            TimeSpanRoute.ReadOnly = true;
+            TimeSpanRoute.Width = 150;
+            // 
+            // Notes
+            // 
+            Notes.HeaderText = "Примечание";
+            Notes.MinimumWidth = 8;
+            Notes.Name = "Notes";
+            Notes.ReadOnly = true;
+            Notes.Width = 150;
             // 
             // buttonAbout_YVA
             // 
@@ -177,6 +252,12 @@
             // openFileDialog_YVA
             // 
             openFileDialog_YVA.FileName = "openFileDialog1";
+            // 
+            // contextMenuStripProject_YVA
+            // 
+            contextMenuStripProject_YVA.ImageScalingSize = new Size(24, 24);
+            contextMenuStripProject_YVA.Name = "contextMenuStripProject_YVA";
+            contextMenuStripProject_YVA.Size = new Size(61, 4);
             // 
             // FormMain
             // 
@@ -205,18 +286,27 @@
         private MenuStrip menuStrip_YVA;
         private ToolStripMenuItem программаToolStripMenuItem;
         private ToolStripMenuItem открытьФайлToolStripMenuItem_YVA;
-        private ToolStripMenuItem сохранитьФайлToolStripMenuItem;
+        private ToolStripMenuItem SaveFileButton_YVA;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem ToolStripMenuItemExit_YVA;
         private GroupBox groupBoxValues_YVA;
         private DataGridView dataGridView_YVA;
         private ToolStripMenuItem строкиToolStripMenuItem;
-        private ToolStripMenuItem включитьРедактированиеToolStripMenuItem_YVA;
-        private ToolStripMenuItem включитьДобавлениеудалениеToolStripMenuItem;
+        private ToolStripMenuItem EditEnableButton_YVA;
+        private ToolStripMenuItem EditDisableButton_YVA;
         private Button buttonAbout_YVA;
-        private ToolStripMenuItem добавлениеСтрокToolStripMenuItem;
-        private ToolStripMenuItem добавитьСтрокуToolStripMenuItem;
-        private ToolStripMenuItem добавитьПроизвольноеКоличествоСтрокToolStripMenuItem;
+        private ToolStripMenuItem EditRowsButton_YVA;
+        private ToolStripMenuItem buttonAddRow_YVA;
+        private ToolStripMenuItem buttonAddCustomRows_YVA;
         private OpenFileDialog openFileDialog_YVA;
+        private DataGridViewTextBoxColumn VehicleType;
+        private DataGridViewTextBoxColumn RouteNumber;
+        private DataGridViewTextBoxColumn StartDate;
+        private DataGridViewTextBoxColumn StartStop;
+        private DataGridViewTextBoxColumn EndStop;
+        private DataGridViewTextBoxColumn TimeSpanRoute;
+        private DataGridViewTextBoxColumn Notes;
+        private SaveFileDialog saveFileDialogProject_YVA;
+        private ContextMenuStrip contextMenuStripProject_YVA;
     }
 }
