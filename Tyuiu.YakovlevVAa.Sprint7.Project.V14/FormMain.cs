@@ -57,10 +57,7 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                 
                 var rawData = ds.LoadCsvData(filePath);
                 var processedData = ds.ProcessData(rawData);
-                LoadDataIntoDataGridView(processedData);
-                
-
-
+                LoadDataIntoDataGridView(processedData);               
             }
             catch (Exception ex)
             {
@@ -85,7 +82,7 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                     // Добавление строк в DataGridView
                     for (int i = 0; i < rowCount; i++)
                     {
-                        dataGridView_YVA.Rows.Add(0,0,DateTime.Today.ToShortDateString(),0,0,0,"Новый маршрут"); // Добавление строки с примерными данными
+                        dataGridView_YVA.Rows.Add("Неизвестно", "Неизвестно", DateTime.Today.ToShortDateString(), "Неизвестно", "Неизвестно", "00:00:00", "Новый маршрут"); // Добавление строки с примерными данными
                     }
                 }
             }
@@ -95,7 +92,7 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
 
             try
             {
-                dataGridView_YVA.Rows.Add(0, 0, DateTime.Today.ToShortDateString(), 0, 0, 0, "Новый маршрут");
+                dataGridView_YVA.Rows.Add("Неизвестно", "Неизвестно", DateTime.Today.ToShortDateString(), "Неизвестно", "Неизвестно", "00:00:00", "Новый маршрут");
             }
             catch
             {
@@ -115,18 +112,7 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
             EditEnableButton_YVA.Checked = false;
             EditDisableButton_YVA.Checked = true;
         }
-        public void dataGridView_YVA_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
-            if (e.ColumnIndex == 2)
-            {
-                if (DateTime.TryParse(e.FormattedValue.ToString(), out DateTime dateValue))
-                {
-                }
-
-
-
-            }
-        }
+        
         public void buttonSave_YVA_Click(object sender, EventArgs e)
         {
             this.saveFileDialogProject_YVA.FileName = "OutPutRoutes.csv";
@@ -182,7 +168,6 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                     
                 }
             }
-
         }
         private void DeleteRow(int rowIndex)
         {
@@ -200,9 +185,7 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                     {
                     MessageBox.Show("Введите дату в формате дд.мм.гггг", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     e.Cancel = true;
-                }
-                 
-                
+                }               
             }
             if(e.ColumnIndex == 5)
             {
@@ -219,10 +202,5 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                 }
             }
         }
-        
-        
     }
 }
-
-
-

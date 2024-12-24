@@ -182,9 +182,7 @@
             dataGridView_YVA.RowHeadersWidth = 62;
             dataGridView_YVA.Size = new Size(911, 526);
             dataGridView_YVA.TabIndex = 0;
-            
             dataGridView_YVA.CellValidating += dataGridView_YVA_CellValidate;
-            
             dataGridView_YVA.MouseDown += dataGridView_YVA_MouseDown;
             // 
             // VehicleType
