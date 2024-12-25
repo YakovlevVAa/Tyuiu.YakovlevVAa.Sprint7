@@ -61,12 +61,11 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                 LoadDataIntoDataGridView(processedData);
                 for (int i = 0; i < dataGridView_YVA.RowCount; i++)
                 {
-                    
+
                     RouteNumComplete.Add(this.dataGridView_YVA.Rows[i].Cells[1].Value.ToString());
                     RouteNumComplete.Add(this.dataGridView_YVA.Rows[i].Cells[3].Value.ToString());
                     RouteNumComplete.Add(this.dataGridView_YVA.Rows[i].Cells[4].Value.ToString());
-                    //comboBoxFilter_YVA.Items.Clear();
-                    //InitializeComboBox();
+                    
 
                 }
                 this.textBoxSearch_YVA.AutoCompleteCustomSource = RouteNumComplete;
@@ -98,14 +97,13 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                     {
                         dataGridView_YVA.Rows.Add("Неизвестно", "Неизвестно", DateTime.Today.ToShortDateString(), "Неизвестно", "Неизвестно", "00:00:00", "Новый маршрут"); // Добавление строки с примерными данными
                         RouteNumComplete.Add(this.dataGridView_YVA.Rows[i].Cells[1].Value.ToString());
+                        RouteNumComplete.Add(this.dataGridView_YVA.Rows[i].Cells[3].Value.ToString());
                         RouteNumComplete.Add(this.dataGridView_YVA.Rows[i].Cells[4].Value.ToString());
-                        RouteNumComplete.Add(this.dataGridView_YVA.Rows[i].Cells[5].Value.ToString());
                         textBoxSearch_YVA.AutoCompleteCustomSource.Add(this.dataGridView_YVA.Rows[i].Cells[1].Value.ToString());
                         textBoxSearch_YVA.AutoCompleteCustomSource.Add(this.dataGridView_YVA.Rows[i].Cells[3].Value.ToString());
                         textBoxSearch_YVA.AutoCompleteCustomSource.Add(this.dataGridView_YVA.Rows[i].Cells[4].Value.ToString());
 
-                        //comboBoxFilter_YVA.Items.Clear();
-                        //InitializeComboBox();
+                        
                     }
                 }
             }
@@ -147,32 +145,31 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
         public void buttonSave_YVA_Click(object sender, EventArgs e)
         {
             this.saveFileDialogProject_YVA.FileName = "OutPutRoutes.csv";
-            this.saveFileDialogProject_YVA.InitialDirectory = Directory.GetCurrentDirectory();
+            
             string path = "c:\\DataSprint7\\OutPutRoutes.csv";
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
+            
             int row = this.dataGridView_YVA.RowCount;
             int column = this.dataGridView_YVA.ColumnCount;
             string str = "";
-            if (this.saveFileDialogProject_YVA.ShowDialog() == DialogResult.OK)
+            if (saveFileDialogProject_YVA.ShowDialog() == DialogResult.OK)
             {
-                for (int i = 0; i < row; i++)
+                List<string> lines = new List<string>();
+                foreach (DataGridViewRow rows in dataGridView_YVA.Rows)
                 {
-                    for (int j = 0; j < column; j++)
+                    List<string> values = new List<string>();
+                    foreach (DataGridViewCell cell in rows.Cells)
                     {
-                        if (j == column - 1)
-                        {
-                            str += this.dataGridView_YVA.Rows[i].Cells[j].Value.ToString();
-                        }
-                        else
-                        {
-                            str += this.dataGridView_YVA.Rows[i].Cells[j].Value.ToString() + ",";
-                        }
+                        values.Add(cell.Value?.ToString()??"");
                     }
-                    File.AppendAllText(path, str + Environment.NewLine);
-                    str = "";
+                    string line = string.Join(",", values);
+                    lines.Add(line);
+                }
+                using (StreamWriter writer = new StreamWriter(saveFileDialogProject_YVA.FileName))
+                {
+                    foreach (string line in lines)
+                    {
+                        writer.WriteLine(line);
+                    }
                 }
             }
         }
@@ -189,9 +186,10 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                     ToolStripMenuItem deleteRow = new ToolStripMenuItem("Удалить строку");
                     ToolStripMenuItem markRow = new ToolStripMenuItem("Выделить строку");
                     ToolStripMenuItem unmarkRow = new ToolStripMenuItem("Убрать выделение");
-                    deleteRow.Click += (s, ev) => {
+                    deleteRow.Click += (s, ev) =>
+                    {
 
-                        
+
                         int rowIndex = hitTest.RowIndex;
                         if (rowIndex >= 0 && rowIndex < dataGridView_YVA.Rows.Count)
                         {
@@ -205,7 +203,7 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                             textBoxSearch_YVA.AutoCompleteCustomSource.Remove(valueToRemove4);
                             textBoxSearch_YVA.AutoCompleteCustomSource.Remove(valueToRemove5);
                             DeleteRow(rowIndex);
-                            
+
                         }
                     };
                     markRow.Click += (s, ev) => dataGridView_YVA.Rows[hitTest.RowIndex].DefaultCellStyle.BackColor = Color.GreenYellow;
@@ -218,19 +216,19 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                 }
             }
         }
-        
+
         private void DeleteRow(int rowIndex)
         {
 
             if (rowIndex >= 0 && rowIndex < dataGridView_YVA.Rows.Count)
             {
 
-                
+
                 dataGridView_YVA.Rows.RemoveAt(rowIndex);
-                
-                    //comboBoxFilter_YVA.Items.Clear();
-                    //InitializeComboBox();
-                
+
+                //comboBoxFilter_YVA.Items.Clear();
+                //InitializeComboBox();
+
             }
         }
         private void dataGridView_YVA_CellValidate(object sender, DataGridViewCellValidatingEventArgs e)
@@ -258,7 +256,7 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                     {
                         // Если все значения корректны, присваиваем значение ячейке
                         dataGridView_YVA.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = $"{hours:D2}:{minutes:D2}:{seconds:D2}";
-                        
+
                     }
                     else
                     {
@@ -273,18 +271,18 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                     e.Cancel = true;
                 }
             }
-            
+
         }
         private void buttonSearch_YVA_Click(object sender, EventArgs e)
         {
             this.textBoxSearch_YVA.AutoCompleteMode = AutoCompleteMode.Suggest;
             string searchValue = textBoxSearch_YVA.Text.ToLower();
             bool found = false;
-            foreach(DataGridViewRow row in dataGridView_YVA.Rows)
+            foreach (DataGridViewRow row in dataGridView_YVA.Rows)
             {
                 bool isMatch = row.Cells[0].Value.ToString().ToLower().Contains(searchValue) || row.Cells[1].Value.ToString().ToLower().Contains(searchValue) || row.Cells[3].Value.ToString().ToLower().Contains(searchValue) || row.Cells[4].Value.ToString().ToLower().Contains(searchValue) || row.Cells[6].Value.ToString().ToLower().Contains(searchValue);
                 row.Visible = isMatch;
-                if(isMatch)
+                if (isMatch)
                 {
                     found = true;
                 }
@@ -297,14 +295,14 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
         private void dataGridView_YVA_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             var editedValue = dataGridView_YVA.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
-            if (!string.IsNullOrEmpty(editedValue) && !RouteNumComplete.Contains(editedValue))
+            
+            if (!string.IsNullOrEmpty(editedValue) && !RouteNumComplete.Contains(editedValue) && (e.ColumnIndex == 1) && (e.ColumnIndex == 3)&& (e.ColumnIndex == 4))
             {
                 // Добавляем значение в коллекцию автозаполнения
                 RouteNumComplete.Add(editedValue);
                 // Добавляем значение в AutoCompleteCustomSource для textBoxSearch
                 textBoxSearch_YVA.AutoCompleteCustomSource.Add(editedValue);
-                //comboBoxFilter_YVA.Items.Clear();
-                //InitializeComboBox();
+               
             }
         }
         private void dataGridView_YVA_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -328,7 +326,7 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
             {
                 int columnIndex = dataGridView_YVA.CurrentCell.ColumnIndex;
 
-                // Проверяем, что изменяется 2-й, 5-й или 6-й столбец
+                // Проверяем, что изменяется 2-й, 4-й или 5-й столбец
                 if (columnIndex == 1 || columnIndex == 3 || columnIndex == 4)
                 {
                     // Получаем старое значение из Tag, которое мы сохранили во время начала редактирования
@@ -345,7 +343,7 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                     string newValue = dataGridView_YVA.CurrentCell.Value?.ToString();
 
                     // Добавляем новое значение в RouteNumComplete, если оно не пустое и отсутствует в коллекции
-                    if (!string.IsNullOrEmpty(newValue) && !RouteNumComplete.Contains(newValue))
+                    if (!string.IsNullOrEmpty(newValue) && !RouteNumComplete.Contains(newValue) && !textBoxSearch_YVA.AutoCompleteCustomSource.Contains(newValue))
                     {
                         RouteNumComplete.Add(newValue);
                         textBoxSearch_YVA.AutoCompleteCustomSource.Add(newValue);
@@ -353,50 +351,6 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                 }
             }
         }
-
-
-        //private void InitializeComboBox()
-        //{
-        // Инициализация ComboBox с уникальными значениями из DataGridView
-        // var uniqueValues = dataGridView_YVA.Rows
-        //.Cast<DataGridViewRow>()
-        // .SelectMany(row => new[]
-        // {
-        // row.Cells[0].Value?.ToString(), // Тип транспорта
-        //row.Cells[1].Value?.ToString(), // Номер маршрута                   
-        //row.Cells[3].Value?.ToString(), // Начальная остановка
-        // row.Cells[4].Value?.ToString(), // Конечная остановка                   
-        //row.Cells[6].Value?.ToString()  // Примечание
-        //})
-        //.Distinct()
-        //.Where(value => value != null) // Убираем null значения
-        //.ToArray();
-
-        //comboBoxFilter_YVA.Items.AddRange(uniqueValues);
-        //}
-        //private void FilterData()
-        //{
-        //    string filterValue = comboBoxFilter_YVA.SelectedItem?.ToString();
-        //
-        // Очищаем текущие строки в DataGridView
-        //    foreach (DataGridViewRow row in dataGridView_YVA.Rows)
-        //    {
-        //        row.Visible = false; // Скрываем все строки
-        //    }
-
-        // Фильтруем данные и показываем только те строки, которые соответствуют фильтру
-        //    foreach (DataGridViewRow row in dataGridView_YVA.Rows)
-        //    {
-        //        if (row.Cells.Cast<DataGridViewCell>().Any(cell => cell.Value?.ToString() == filterValue))
-        //        {
-        //            row.Visible = true; // Показываем соответствующие строки
-        //        }
-        //    }
     }
-        //private void comboBoxFilter_YVA__SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    FilterData();
-        //}
-
-    
 }
+
