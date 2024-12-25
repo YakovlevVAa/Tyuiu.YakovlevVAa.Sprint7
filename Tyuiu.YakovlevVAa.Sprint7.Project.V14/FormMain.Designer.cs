@@ -58,8 +58,6 @@
             contextMenuStripProject_YVA = new ContextMenuStrip(components);
             toolTip_YVA = new ToolTip(components);
             tabControl_YVA = new TabControl();
-            tabPageFilter_YVA = new TabPage();
-            comboBoxFilter_YVA = new ComboBox();
             tabPageSearch_YVA = new TabPage();
             buttonSearch_YVA = new Button();
             textBoxSearch_YVA = new TextBox();
@@ -67,7 +65,6 @@
             groupBoxValues_YVA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_YVA).BeginInit();
             tabControl_YVA.SuspendLayout();
-            tabPageFilter_YVA.SuspendLayout();
             tabPageSearch_YVA.SuspendLayout();
             SuspendLayout();
             // 
@@ -278,32 +275,12 @@
             // 
             // tabControl_YVA
             // 
-            tabControl_YVA.Controls.Add(tabPageFilter_YVA);
             tabControl_YVA.Controls.Add(tabPageSearch_YVA);
             tabControl_YVA.Location = new Point(935, 54);
             tabControl_YVA.Name = "tabControl_YVA";
             tabControl_YVA.SelectedIndex = 0;
             tabControl_YVA.Size = new Size(431, 150);
             tabControl_YVA.TabIndex = 3;
-            // 
-            // tabPageFilter_YVA
-            // 
-            tabPageFilter_YVA.Controls.Add(comboBoxFilter_YVA);
-            tabPageFilter_YVA.Location = new Point(4, 34);
-            tabPageFilter_YVA.Name = "tabPageFilter_YVA";
-            tabPageFilter_YVA.Padding = new Padding(3);
-            tabPageFilter_YVA.Size = new Size(423, 112);
-            tabPageFilter_YVA.TabIndex = 1;
-            tabPageFilter_YVA.Text = "Фильтр";
-            tabPageFilter_YVA.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxFilter_YVA
-            // 
-            comboBoxFilter_YVA.FormattingEnabled = true;
-            comboBoxFilter_YVA.Location = new Point(3, 23);
-            comboBoxFilter_YVA.Name = "comboBoxFilter_YVA";
-            comboBoxFilter_YVA.Size = new Size(411, 33);
-            comboBoxFilter_YVA.TabIndex = 0;
             // 
             // tabPageSearch_YVA
             // 
@@ -355,7 +332,6 @@
             groupBoxValues_YVA.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_YVA).EndInit();
             tabControl_YVA.ResumeLayout(false);
-            tabPageFilter_YVA.ResumeLayout(false);
             tabPageSearch_YVA.ResumeLayout(false);
             tabPageSearch_YVA.PerformLayout();
             ResumeLayout(false);
@@ -394,7 +370,5 @@
         private TabPage tabPageSearch_YVA;
         private Button buttonSearch_YVA;
         private TextBox textBoxSearch_YVA;
-        private TabPage tabPageFilter_YVA;
-        private ComboBox comboBoxFilter_YVA;
     }
 }
