@@ -56,9 +56,19 @@
             openFileDialog_YVA = new OpenFileDialog();
             saveFileDialogProject_YVA = new SaveFileDialog();
             contextMenuStripProject_YVA = new ContextMenuStrip(components);
+            toolTip_YVA = new ToolTip(components);
+            tabControl_YVA = new TabControl();
+            tabPageFilter_YVA = new TabPage();
+            comboBoxFilter_YVA = new ComboBox();
+            tabPageSearch_YVA = new TabPage();
+            buttonSearch_YVA = new Button();
+            textBoxSearch_YVA = new TextBox();
             menuStrip_YVA.SuspendLayout();
             groupBoxValues_YVA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_YVA).BeginInit();
+            tabControl_YVA.SuspendLayout();
+            tabPageFilter_YVA.SuspendLayout();
+            tabPageSearch_YVA.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip_YVA
@@ -182,7 +192,10 @@
             dataGridView_YVA.RowHeadersWidth = 62;
             dataGridView_YVA.Size = new Size(911, 526);
             dataGridView_YVA.TabIndex = 0;
+            dataGridView_YVA.CellBeginEdit += dataGridView_YVA_CellBeginEdit;
+            dataGridView_YVA.CellEndEdit += dataGridView_YVA_CellEndEdit;
             dataGridView_YVA.CellValidating += dataGridView_YVA_CellValidate;
+            dataGridView_YVA.CellValueChanged += DataGridView1_CellValueChanged;
             dataGridView_YVA.MouseDown += dataGridView_YVA_MouseDown;
             // 
             // VehicleType
@@ -263,11 +276,71 @@
             contextMenuStripProject_YVA.Name = "contextMenuStripProject_YVA";
             contextMenuStripProject_YVA.Size = new Size(61, 4);
             // 
+            // tabControl_YVA
+            // 
+            tabControl_YVA.Controls.Add(tabPageFilter_YVA);
+            tabControl_YVA.Controls.Add(tabPageSearch_YVA);
+            tabControl_YVA.Location = new Point(935, 54);
+            tabControl_YVA.Name = "tabControl_YVA";
+            tabControl_YVA.SelectedIndex = 0;
+            tabControl_YVA.Size = new Size(431, 150);
+            tabControl_YVA.TabIndex = 3;
+            // 
+            // tabPageFilter_YVA
+            // 
+            tabPageFilter_YVA.Controls.Add(comboBoxFilter_YVA);
+            tabPageFilter_YVA.Location = new Point(4, 34);
+            tabPageFilter_YVA.Name = "tabPageFilter_YVA";
+            tabPageFilter_YVA.Padding = new Padding(3);
+            tabPageFilter_YVA.Size = new Size(423, 112);
+            tabPageFilter_YVA.TabIndex = 1;
+            tabPageFilter_YVA.Text = "Фильтр";
+            tabPageFilter_YVA.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxFilter_YVA
+            // 
+            comboBoxFilter_YVA.FormattingEnabled = true;
+            comboBoxFilter_YVA.Location = new Point(3, 23);
+            comboBoxFilter_YVA.Name = "comboBoxFilter_YVA";
+            comboBoxFilter_YVA.Size = new Size(411, 33);
+            comboBoxFilter_YVA.TabIndex = 0;
+            // 
+            // tabPageSearch_YVA
+            // 
+            tabPageSearch_YVA.Controls.Add(buttonSearch_YVA);
+            tabPageSearch_YVA.Controls.Add(textBoxSearch_YVA);
+            tabPageSearch_YVA.Location = new Point(4, 34);
+            tabPageSearch_YVA.Name = "tabPageSearch_YVA";
+            tabPageSearch_YVA.Padding = new Padding(3);
+            tabPageSearch_YVA.Size = new Size(423, 112);
+            tabPageSearch_YVA.TabIndex = 0;
+            tabPageSearch_YVA.Text = "Поиск";
+            tabPageSearch_YVA.UseVisualStyleBackColor = true;
+            // 
+            // buttonSearch_YVA
+            // 
+            buttonSearch_YVA.BackgroundImage = (Image)resources.GetObject("buttonSearch_YVA.BackgroundImage");
+            buttonSearch_YVA.BackgroundImageLayout = ImageLayout.Zoom;
+            buttonSearch_YVA.Location = new Point(329, 18);
+            buttonSearch_YVA.Name = "buttonSearch_YVA";
+            buttonSearch_YVA.Size = new Size(78, 78);
+            buttonSearch_YVA.TabIndex = 1;
+            buttonSearch_YVA.UseVisualStyleBackColor = true;
+            buttonSearch_YVA.Click += buttonSearch_YVA_Click;
+            // 
+            // textBoxSearch_YVA
+            // 
+            textBoxSearch_YVA.Location = new Point(17, 42);
+            textBoxSearch_YVA.Name = "textBoxSearch_YVA";
+            textBoxSearch_YVA.Size = new Size(306, 31);
+            textBoxSearch_YVA.TabIndex = 0;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1378, 619);
+            Controls.Add(tabControl_YVA);
             Controls.Add(buttonAbout_YVA);
             Controls.Add(groupBoxValues_YVA);
             Controls.Add(menuStrip_YVA);
@@ -281,6 +354,10 @@
             menuStrip_YVA.PerformLayout();
             groupBoxValues_YVA.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_YVA).EndInit();
+            tabControl_YVA.ResumeLayout(false);
+            tabPageFilter_YVA.ResumeLayout(false);
+            tabPageSearch_YVA.ResumeLayout(false);
+            tabPageSearch_YVA.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -312,5 +389,12 @@
         private DataGridViewTextBoxColumn Notes;
         private SaveFileDialog saveFileDialogProject_YVA;
         private ContextMenuStrip contextMenuStripProject_YVA;
+        private ToolTip toolTip_YVA;
+        private TabControl tabControl_YVA;
+        private TabPage tabPageSearch_YVA;
+        private Button buttonSearch_YVA;
+        private TextBox textBoxSearch_YVA;
+        private TabPage tabPageFilter_YVA;
+        private ComboBox comboBoxFilter_YVA;
     }
 }
