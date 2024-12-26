@@ -14,14 +14,14 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
         DataService ds = new DataService();
         AutoCompleteStringCollection driverNumComplete = new AutoCompleteStringCollection();
         AutoCompleteStringCollection RouteNumComplete = new AutoCompleteStringCollection();
-
+        public bool fileOpened = false;
 
         public FormMain()
         {
             InitializeComponent();
             openFileDialog_YVA.Filter = "Значения, разделенные запятыми(*.csv)|*.csv|Все файлы(*.*)|*.*";
             saveFileDialogProject_YVA.Filter = "Значения, разделенные запятыми(*.csv)|*.csv|Все файлы(*.*)|*.*";
-
+            bool fileOpened = false;
 
 
 
@@ -71,6 +71,7 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                 this.textBoxSearch_YVA.AutoCompleteCustomSource = RouteNumComplete;
                 this.textBoxSearch_YVA.AutoCompleteMode = AutoCompleteMode.Suggest;
                 this.textBoxSearch_YVA.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                fileOpened = true;
             }
             catch (Exception ex)
             {
@@ -84,6 +85,56 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
 
 
         }
+        public void buttonStatistics_YVA_CLick(object sender, EventArgs e)
+        {
+            
+            if (fileOpened == false)
+            {
+                MessageBox.Show("Сначала откройте файл!","Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+            }
+            else
+            {
+                FormStatistics formStatistics = new FormStatistics(dataGridView_YVA,CountBuses(), CountMiniBuses());
+                formStatistics.ShowDialog();
+            }
+        }
+        private int CountBuses()
+        {
+            int busCount = 0;
+
+            // Считывание данных из DataGridView
+            for (int i = 0; i < dataGridView_YVA.Rows.Count; i++)
+            {
+                string transportType = dataGridView_YVA.Rows[i].Cells[0].Value.ToString();
+                int count = 0;
+
+                if (transportType == "Автобус")
+                {
+                    busCount += count; // Суммируем количество автобусов
+                }
+            }
+
+            return busCount;
+        }
+        private int CountMiniBuses()
+        {
+            int minibusCount = 0;
+
+            // Считывание данных из DataGridView
+            for (int i = 0; i < dataGridView_YVA.Rows.Count; i++)
+            {
+                string transportType = dataGridView_YVA.Rows[i].Cells[0].Value.ToString();
+                int count = 0;
+
+                if (transportType == "Маршрутка")
+                {
+                    minibusCount += count; // Суммируем количество автобусов
+                }
+            }
+
+            return minibusCount;
+        }
         public void buttonAddCustomRows_YVA_Click(object sender, EventArgs e)
         {
             using (var inputForm = new FormMultipleRowsAdd())
@@ -95,7 +146,7 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                     // Добавление строк в DataGridView
                     for (int i = 0; i < rowCount; i++)
                     {
-                        dataGridView_YVA.Rows.Add("Неизвестно", "Неизвестно", DateTime.Today.ToShortDateString(), "Неизвестно", "Неизвестно", "00:00:00", "Новый маршрут"); // Добавление строки с примерными данными
+                        dataGridView_YVA.Rows.Add("Неизвестно", "Неизвестно", DateTime.Today.ToShortDateString(), "Неизвестно", "Неизвестно", "00:00:00", "Неизвестно", "Новый маршрут"); // Добавление строки с примерными данными
                         RouteNumComplete.Add(this.dataGridView_YVA.Rows[i].Cells[1].Value.ToString());
                         RouteNumComplete.Add(this.dataGridView_YVA.Rows[i].Cells[3].Value.ToString());
                         RouteNumComplete.Add(this.dataGridView_YVA.Rows[i].Cells[4].Value.ToString());
@@ -108,12 +159,15 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                 }
             }
         }
+        
+
+       
         public void buttonAddRow_YVA_Click(object sender, EventArgs e)
         {
 
             try
             {
-                dataGridView_YVA.Rows.Add("Неизвестно", "Неизвестно", DateTime.Today.ToShortDateString(), "Неизвестно", "Неизвестно", "00:00:00", "Новый маршрут");
+                dataGridView_YVA.Rows.Add("Неизвестно", "Неизвестно", DateTime.Today.ToShortDateString(), "Неизвестно", "Неизвестно", "00:00:00", "Неизвестно", "Новый маршрут");
                 RouteNumComplete.Add(dataGridView_YVA.Rows[dataGridView_YVA.Rows.Count - 1].Cells[1].Value.ToString());
                 RouteNumComplete.Add(dataGridView_YVA.Rows[dataGridView_YVA.Rows.Count - 1].Cells[3].Value.ToString());
                 RouteNumComplete.Add(dataGridView_YVA.Rows[dataGridView_YVA.Rows.Count - 1].Cells[4].Value.ToString());
@@ -271,7 +325,14 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                     e.Cancel = true;
                 }
             }
-
+            if (e.ColumnIndex == 6)
+            {
+                if (!System.Text.RegularExpressions.Regex.IsMatch(e.FormattedValue.ToString(), @"^[A-Я][0-9]{3}[A-Я]{2}$"))
+                {
+                    MessageBox.Show("Номер транспорта не соответствует формату А122БВ", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+            }
         }
         private void buttonSearch_YVA_Click(object sender, EventArgs e)
         {

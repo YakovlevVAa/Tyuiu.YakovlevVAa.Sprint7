@@ -43,15 +43,11 @@
             EditRowsButton_YVA = new ToolStripMenuItem();
             buttonAddRow_YVA = new ToolStripMenuItem();
             buttonAddCustomRows_YVA = new ToolStripMenuItem();
+            помощьToolStripMenuItem = new ToolStripMenuItem();
+            buttonStatistics_YVA = new ToolStripMenuItem();
+            buttonUserManual_YVA = new ToolStripMenuItem();
             groupBoxValues_YVA = new GroupBox();
             dataGridView_YVA = new DataGridView();
-            VehicleType = new DataGridViewTextBoxColumn();
-            RouteNumber = new DataGridViewTextBoxColumn();
-            StartDate = new DataGridViewTextBoxColumn();
-            StartStop = new DataGridViewTextBoxColumn();
-            EndStop = new DataGridViewTextBoxColumn();
-            TimeSpanRoute = new DataGridViewTextBoxColumn();
-            Notes = new DataGridViewTextBoxColumn();
             buttonAbout_YVA = new Button();
             openFileDialog_YVA = new OpenFileDialog();
             saveFileDialogProject_YVA = new SaveFileDialog();
@@ -61,6 +57,14 @@
             tabPageSearch_YVA = new TabPage();
             buttonSearch_YVA = new Button();
             textBoxSearch_YVA = new TextBox();
+            VehicleType = new DataGridViewTextBoxColumn();
+            RouteNumber = new DataGridViewTextBoxColumn();
+            StartDate = new DataGridViewTextBoxColumn();
+            StartStop = new DataGridViewTextBoxColumn();
+            EndStop = new DataGridViewTextBoxColumn();
+            TimeSpanRoute = new DataGridViewTextBoxColumn();
+            TransportNum = new DataGridViewTextBoxColumn();
+            Notes = new DataGridViewTextBoxColumn();
             menuStrip_YVA.SuspendLayout();
             groupBoxValues_YVA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_YVA).BeginInit();
@@ -72,10 +76,10 @@
             // 
             menuStrip_YVA.Dock = DockStyle.None;
             menuStrip_YVA.ImageScalingSize = new Size(24, 24);
-            menuStrip_YVA.Items.AddRange(new ToolStripItem[] { программаToolStripMenuItem, строкиToolStripMenuItem });
+            menuStrip_YVA.Items.AddRange(new ToolStripItem[] { программаToolStripMenuItem, строкиToolStripMenuItem, помощьToolStripMenuItem });
             menuStrip_YVA.Location = new Point(9, 9);
             menuStrip_YVA.Name = "menuStrip_YVA";
-            menuStrip_YVA.Size = new Size(220, 33);
+            menuStrip_YVA.Size = new Size(320, 33);
             menuStrip_YVA.TabIndex = 0;
             menuStrip_YVA.Text = "menuStrip1";
             // 
@@ -159,6 +163,26 @@
             buttonAddCustomRows_YVA.Text = "Добавить произвольное количество строк";
             buttonAddCustomRows_YVA.Click += buttonAddCustomRows_YVA_Click;
             // 
+            // помощьToolStripMenuItem
+            // 
+            помощьToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { buttonStatistics_YVA, buttonUserManual_YVA });
+            помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
+            помощьToolStripMenuItem.Size = new Size(100, 29);
+            помощьToolStripMenuItem.Text = "Помощь";
+            // 
+            // buttonStatistics_YVA
+            // 
+            buttonStatistics_YVA.Name = "buttonStatistics_YVA";
+            buttonStatistics_YVA.Size = new Size(336, 34);
+            buttonStatistics_YVA.Text = "Статистика";
+            buttonStatistics_YVA.Click += buttonStatistics_YVA_CLick;
+            // 
+            // buttonUserManual_YVA
+            // 
+            buttonUserManual_YVA.Name = "buttonUserManual_YVA";
+            buttonUserManual_YVA.Size = new Size(336, 34);
+            buttonUserManual_YVA.Text = "Руководство пользователя";
+            // 
             // groupBoxValues_YVA
             // 
             groupBoxValues_YVA.Controls.Add(dataGridView_YVA);
@@ -174,7 +198,7 @@
             dataGridView_YVA.AllowUserToAddRows = false;
             dataGridView_YVA.AllowUserToDeleteRows = false;
             dataGridView_YVA.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_YVA.Columns.AddRange(new DataGridViewColumn[] { VehicleType, RouteNumber, StartDate, StartStop, EndStop, TimeSpanRoute, Notes });
+            dataGridView_YVA.Columns.AddRange(new DataGridViewColumn[] { VehicleType, RouteNumber, StartDate, StartStop, EndStop, TimeSpanRoute, TransportNum, Notes });
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Window;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -194,62 +218,6 @@
             dataGridView_YVA.CellValidating += dataGridView_YVA_CellValidate;
             dataGridView_YVA.CellValueChanged += DataGridView1_CellValueChanged;
             dataGridView_YVA.MouseDown += dataGridView_YVA_MouseDown;
-            // 
-            // VehicleType
-            // 
-            VehicleType.HeaderText = "Тип транспорта";
-            VehicleType.MinimumWidth = 8;
-            VehicleType.Name = "VehicleType";
-            VehicleType.ReadOnly = true;
-            VehicleType.Width = 150;
-            // 
-            // RouteNumber
-            // 
-            RouteNumber.HeaderText = "Номер маршрута";
-            RouteNumber.MinimumWidth = 8;
-            RouteNumber.Name = "RouteNumber";
-            RouteNumber.ReadOnly = true;
-            RouteNumber.Width = 150;
-            // 
-            // StartDate
-            // 
-            StartDate.HeaderText = "Дата введения маршрута";
-            StartDate.MinimumWidth = 8;
-            StartDate.Name = "StartDate";
-            StartDate.ReadOnly = true;
-            StartDate.Width = 150;
-            // 
-            // StartStop
-            // 
-            StartStop.HeaderText = "Начальная остановка";
-            StartStop.MinimumWidth = 8;
-            StartStop.Name = "StartStop";
-            StartStop.ReadOnly = true;
-            StartStop.Width = 150;
-            // 
-            // EndStop
-            // 
-            EndStop.HeaderText = "Конечная остановка";
-            EndStop.MinimumWidth = 8;
-            EndStop.Name = "EndStop";
-            EndStop.ReadOnly = true;
-            EndStop.Width = 150;
-            // 
-            // TimeSpanRoute
-            // 
-            TimeSpanRoute.HeaderText = "Время в пути";
-            TimeSpanRoute.MinimumWidth = 8;
-            TimeSpanRoute.Name = "TimeSpanRoute";
-            TimeSpanRoute.ReadOnly = true;
-            TimeSpanRoute.Width = 150;
-            // 
-            // Notes
-            // 
-            Notes.HeaderText = "Примечание";
-            Notes.MinimumWidth = 8;
-            Notes.Name = "Notes";
-            Notes.ReadOnly = true;
-            Notes.Width = 150;
             // 
             // buttonAbout_YVA
             // 
@@ -312,6 +280,70 @@
             textBoxSearch_YVA.Size = new Size(306, 31);
             textBoxSearch_YVA.TabIndex = 0;
             // 
+            // VehicleType
+            // 
+            VehicleType.HeaderText = "Тип транспорта";
+            VehicleType.MinimumWidth = 8;
+            VehicleType.Name = "VehicleType";
+            VehicleType.ReadOnly = true;
+            VehicleType.Width = 150;
+            // 
+            // RouteNumber
+            // 
+            RouteNumber.HeaderText = "Номер маршрута";
+            RouteNumber.MinimumWidth = 8;
+            RouteNumber.Name = "RouteNumber";
+            RouteNumber.ReadOnly = true;
+            RouteNumber.Width = 150;
+            // 
+            // StartDate
+            // 
+            StartDate.HeaderText = "Дата введения маршрута";
+            StartDate.MinimumWidth = 8;
+            StartDate.Name = "StartDate";
+            StartDate.ReadOnly = true;
+            StartDate.Width = 150;
+            // 
+            // StartStop
+            // 
+            StartStop.HeaderText = "Начальная остановка";
+            StartStop.MinimumWidth = 8;
+            StartStop.Name = "StartStop";
+            StartStop.ReadOnly = true;
+            StartStop.Width = 150;
+            // 
+            // EndStop
+            // 
+            EndStop.HeaderText = "Конечная остановка";
+            EndStop.MinimumWidth = 8;
+            EndStop.Name = "EndStop";
+            EndStop.ReadOnly = true;
+            EndStop.Width = 150;
+            // 
+            // TimeSpanRoute
+            // 
+            TimeSpanRoute.HeaderText = "Время в пути";
+            TimeSpanRoute.MinimumWidth = 8;
+            TimeSpanRoute.Name = "TimeSpanRoute";
+            TimeSpanRoute.ReadOnly = true;
+            TimeSpanRoute.Width = 150;
+            // 
+            // TransportNum
+            // 
+            TransportNum.HeaderText = "Номер транспорта";
+            TransportNum.MinimumWidth = 8;
+            TransportNum.Name = "TransportNum";
+            TransportNum.ReadOnly = true;
+            TransportNum.Width = 150;
+            // 
+            // Notes
+            // 
+            Notes.HeaderText = "Примечание";
+            Notes.MinimumWidth = 8;
+            Notes.Name = "Notes";
+            Notes.ReadOnly = true;
+            Notes.Width = 150;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -356,13 +388,6 @@
         private ToolStripMenuItem buttonAddRow_YVA;
         private ToolStripMenuItem buttonAddCustomRows_YVA;
         private OpenFileDialog openFileDialog_YVA;
-        private DataGridViewTextBoxColumn VehicleType;
-        private DataGridViewTextBoxColumn RouteNumber;
-        private DataGridViewTextBoxColumn StartDate;
-        private DataGridViewTextBoxColumn StartStop;
-        private DataGridViewTextBoxColumn EndStop;
-        private DataGridViewTextBoxColumn TimeSpanRoute;
-        private DataGridViewTextBoxColumn Notes;
         private SaveFileDialog saveFileDialogProject_YVA;
         private ContextMenuStrip contextMenuStripProject_YVA;
         private ToolTip toolTip_YVA;
@@ -370,5 +395,16 @@
         private TabPage tabPageSearch_YVA;
         private Button buttonSearch_YVA;
         private TextBox textBoxSearch_YVA;
+        private ToolStripMenuItem помощьToolStripMenuItem;
+        private ToolStripMenuItem buttonStatistics_YVA;
+        private ToolStripMenuItem buttonUserManual_YVA;
+        private DataGridViewTextBoxColumn VehicleType;
+        private DataGridViewTextBoxColumn RouteNumber;
+        private DataGridViewTextBoxColumn StartDate;
+        private DataGridViewTextBoxColumn StartStop;
+        private DataGridViewTextBoxColumn EndStop;
+        private DataGridViewTextBoxColumn TimeSpanRoute;
+        private DataGridViewTextBoxColumn TransportNum;
+        private DataGridViewTextBoxColumn Notes;
     }
 }
