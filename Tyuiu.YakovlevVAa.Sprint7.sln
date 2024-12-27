@@ -7,7 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project.V14", "Project.V14"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tyuiu.YakovlevVAa.Sprint7.Project.V14", "Tyuiu.YakovlevVAa.Sprint7.Project.V14\Tyuiu.YakovlevVAa.Sprint7.Project.V14.csproj", "{B4BDBD86-B94D-4B0A-8CE0-ACF8A1175F97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyuiu.YakovlevVAa.Sprint7.Project.V14.Lib", "Tyuiu.YakovlevVAa.Sprint7.Project.V14.Lib\Tyuiu.YakovlevVAa.Sprint7.Project.V14.Lib.csproj", "{257043C7-D4FB-46BB-B2DF-5123D623AB2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tyuiu.YakovlevVAa.Sprint7.Project.V14.Lib", "Tyuiu.YakovlevVAa.Sprint7.Project.V14.Lib\Tyuiu.YakovlevVAa.Sprint7.Project.V14.Lib.csproj", "{257043C7-D4FB-46BB-B2DF-5123D623AB2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyuiu.YakovlevVAa.Sprint7.Project.V14.Test", "Tyuiu.YakovlevVAa.Sprint7.Project.V14.Test\Tyuiu.YakovlevVAa.Sprint7.Project.V14.Test.csproj", "{024DECEF-7190-42B1-9B30-D5EECD781E6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{257043C7-D4FB-46BB-B2DF-5123D623AB2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{257043C7-D4FB-46BB-B2DF-5123D623AB2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{257043C7-D4FB-46BB-B2DF-5123D623AB2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{024DECEF-7190-42B1-9B30-D5EECD781E6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{024DECEF-7190-42B1-9B30-D5EECD781E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{024DECEF-7190-42B1-9B30-D5EECD781E6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{024DECEF-7190-42B1-9B30-D5EECD781E6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +36,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B4BDBD86-B94D-4B0A-8CE0-ACF8A1175F97} = {EE4F86D3-1678-4009-97E6-00251AE0A80C}
 		{257043C7-D4FB-46BB-B2DF-5123D623AB2C} = {EE4F86D3-1678-4009-97E6-00251AE0A80C}
+		{024DECEF-7190-42B1-9B30-D5EECD781E6C} = {EE4F86D3-1678-4009-97E6-00251AE0A80C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D402D715-9DE8-4DCF-BDA4-7D183D74A46C}

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUserManual));
             label1 = new Label();
+            buttonClose_YVA = new Button();
             SuspendLayout();
             // 
             // label1
@@ -41,11 +42,22 @@
             label1.TabIndex = 0;
             label1.Text = resources.GetString("label1.Text");
             // 
+            // buttonClose_YVA
+            // 
+            buttonClose_YVA.Location = new Point(619, 592);
+            buttonClose_YVA.Name = "buttonClose_YVA";
+            buttonClose_YVA.Size = new Size(112, 34);
+            buttonClose_YVA.TabIndex = 1;
+            buttonClose_YVA.Text = "Закрыть";
+            buttonClose_YVA.UseVisualStyleBackColor = true;
+            buttonClose_YVA.Click += buttonCLose_YVA_Click;
+            // 
             // FormUserManual
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 605);
+            ClientSize = new Size(800, 647);
+            Controls.Add(buttonClose_YVA);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "FormUserManual";
@@ -58,5 +70,6 @@
         #endregion
 
         private Label label1;
+        private Button buttonClose_YVA;
     }
 }
