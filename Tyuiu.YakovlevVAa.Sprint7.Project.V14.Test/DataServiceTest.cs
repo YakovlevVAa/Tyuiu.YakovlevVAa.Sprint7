@@ -19,7 +19,7 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14.Test
         }
         public void Cleanup()
         {
-            // Удаляем файл после теста, если он существует
+            
             if (File.Exists(testFilePath))
             {
                 File.Delete(testFilePath);
@@ -27,10 +27,10 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14.Test
         }
         public void Test_LoadCsvData_ReturnsCorrectData()
         {
-            // Act
+            
             var result = ds.LoadCsvData(testFilePath);
 
-            // Assert
+            
             var expectedData = new List<string[]>
         {
             new string[] { "Column1", "Column2", "Column3" },
