@@ -45,18 +45,7 @@
             buttonAddCustomRows_YVA = new ToolStripMenuItem();
             помощьToolStripMenuItem = new ToolStripMenuItem();
             buttonStatistics_YVA = new ToolStripMenuItem();
-            buttonUserManual_YVA = new ToolStripMenuItem();
-            groupBoxValues_YVA = new GroupBox();
             dataGridView_YVA = new DataGridView();
-            buttonAbout_YVA = new Button();
-            openFileDialog_YVA = new OpenFileDialog();
-            saveFileDialogProject_YVA = new SaveFileDialog();
-            contextMenuStripProject_YVA = new ContextMenuStrip(components);
-            toolTip_YVA = new ToolTip(components);
-            tabControl_YVA = new TabControl();
-            tabPageSearch_YVA = new TabPage();
-            buttonSearch_YVA = new Button();
-            textBoxSearch_YVA = new TextBox();
             VehicleType = new DataGridViewTextBoxColumn();
             RouteNumber = new DataGridViewTextBoxColumn();
             StartDate = new DataGridViewTextBoxColumn();
@@ -65,11 +54,29 @@
             TimeSpanRoute = new DataGridViewTextBoxColumn();
             TransportNum = new DataGridViewTextBoxColumn();
             Notes = new DataGridViewTextBoxColumn();
+            buttonAbout_YVA = new Button();
+            openFileDialog_YVA = new OpenFileDialog();
+            saveFileDialogProject_YVA = new SaveFileDialog();
+            contextMenuStripProject_YVA = new ContextMenuStrip(components);
+            toolTip_YVA = new ToolTip(components);
+            buttonSearch_YVA = new Button();
+            buttonUserManual_YVA = new Button();
+            tabControl_YVA = new TabControl();
+            tabPageSearch_YVA = new TabPage();
+            textBoxSearch_YVA = new TextBox();
+            panel1 = new Panel();
+            labelUserManual_YVA = new Label();
+            groupBoxRoutes_YVA = new GroupBox();
+            panel2 = new Panel();
+            panel3 = new Panel();
             menuStrip_YVA.SuspendLayout();
-            groupBoxValues_YVA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_YVA).BeginInit();
             tabControl_YVA.SuspendLayout();
             tabPageSearch_YVA.SuspendLayout();
+            panel1.SuspendLayout();
+            groupBoxRoutes_YVA.SuspendLayout();
+            panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip_YVA
@@ -77,9 +84,9 @@
             menuStrip_YVA.Dock = DockStyle.None;
             menuStrip_YVA.ImageScalingSize = new Size(24, 24);
             menuStrip_YVA.Items.AddRange(new ToolStripItem[] { программаToolStripMenuItem, строкиToolStripMenuItem, помощьToolStripMenuItem });
-            menuStrip_YVA.Location = new Point(9, 9);
+            menuStrip_YVA.Location = new Point(12, 0);
             menuStrip_YVA.Name = "menuStrip_YVA";
-            menuStrip_YVA.Size = new Size(320, 33);
+            menuStrip_YVA.Size = new Size(357, 33);
             menuStrip_YVA.TabIndex = 0;
             menuStrip_YVA.Text = "menuStrip1";
             // 
@@ -131,6 +138,7 @@
             EditEnableButton_YVA.Name = "EditEnableButton_YVA";
             EditEnableButton_YVA.Size = new Size(346, 34);
             EditEnableButton_YVA.Text = "Включить редактирование";
+            EditEnableButton_YVA.ToolTipText = "Включение редактирования данных";
             EditEnableButton_YVA.Click += EditEnableButton_YVA_Click;
             // 
             // EditDisableButton_YVA
@@ -139,6 +147,7 @@
             EditDisableButton_YVA.Name = "EditDisableButton_YVA";
             EditDisableButton_YVA.Size = new Size(346, 34);
             EditDisableButton_YVA.Text = "Выключить редактирование";
+            EditDisableButton_YVA.ToolTipText = "Выключение редактирования данных";
             EditDisableButton_YVA.Click += EditDisableButton_YVA_Click;
             // 
             // EditRowsButton_YVA
@@ -165,33 +174,19 @@
             // 
             // помощьToolStripMenuItem
             // 
-            помощьToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { buttonStatistics_YVA, buttonUserManual_YVA });
+            помощьToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { buttonStatistics_YVA });
             помощьToolStripMenuItem.Name = "помощьToolStripMenuItem";
-            помощьToolStripMenuItem.Size = new Size(100, 29);
-            помощьToolStripMenuItem.Text = "Помощь";
+            помощьToolStripMenuItem.Size = new Size(137, 29);
+            помощьToolStripMenuItem.Text = "Информация";
             // 
             // buttonStatistics_YVA
             // 
+            buttonStatistics_YVA.Enabled = false;
             buttonStatistics_YVA.Name = "buttonStatistics_YVA";
-            buttonStatistics_YVA.Size = new Size(336, 34);
+            buttonStatistics_YVA.Size = new Size(201, 34);
             buttonStatistics_YVA.Text = "Статистика";
+            buttonStatistics_YVA.ToolTipText = "Статистика по введённым данным";
             buttonStatistics_YVA.Click += buttonStatistics_YVA_CLick;
-            // 
-            // buttonUserManual_YVA
-            // 
-            buttonUserManual_YVA.Name = "buttonUserManual_YVA";
-            buttonUserManual_YVA.Size = new Size(336, 34);
-            buttonUserManual_YVA.Text = "Руководство пользователя";
-            // 
-            // groupBoxValues_YVA
-            // 
-            groupBoxValues_YVA.Controls.Add(dataGridView_YVA);
-            groupBoxValues_YVA.Location = new Point(12, 45);
-            groupBoxValues_YVA.Name = "groupBoxValues_YVA";
-            groupBoxValues_YVA.Size = new Size(923, 562);
-            groupBoxValues_YVA.TabIndex = 1;
-            groupBoxValues_YVA.TabStop = false;
-            groupBoxValues_YVA.Text = "Данные";
             // 
             // dataGridView_YVA
             // 
@@ -207,78 +202,18 @@
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dataGridView_YVA.DefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView_YVA.Location = new Point(6, 30);
+            dataGridView_YVA.Dock = DockStyle.Fill;
+            dataGridView_YVA.Location = new Point(3, 27);
             dataGridView_YVA.Name = "dataGridView_YVA";
             dataGridView_YVA.ReadOnly = true;
             dataGridView_YVA.RowHeadersWidth = 62;
-            dataGridView_YVA.Size = new Size(911, 526);
+            dataGridView_YVA.Size = new Size(947, 547);
             dataGridView_YVA.TabIndex = 0;
             dataGridView_YVA.CellBeginEdit += dataGridView_YVA_CellBeginEdit;
             dataGridView_YVA.CellEndEdit += dataGridView_YVA_CellEndEdit;
             dataGridView_YVA.CellValidating += dataGridView_YVA_CellValidate;
             dataGridView_YVA.CellValueChanged += DataGridView1_CellValueChanged;
             dataGridView_YVA.MouseDown += dataGridView_YVA_MouseDown;
-            // 
-            // buttonAbout_YVA
-            // 
-            buttonAbout_YVA.BackgroundImage = (Image)resources.GetObject("buttonAbout_YVA.BackgroundImage");
-            buttonAbout_YVA.BackgroundImageLayout = ImageLayout.Center;
-            buttonAbout_YVA.FlatStyle = FlatStyle.Popup;
-            buttonAbout_YVA.Location = new Point(1327, 9);
-            buttonAbout_YVA.Name = "buttonAbout_YVA";
-            buttonAbout_YVA.Size = new Size(39, 39);
-            buttonAbout_YVA.TabIndex = 2;
-            buttonAbout_YVA.UseVisualStyleBackColor = true;
-            buttonAbout_YVA.Click += buttonAbout_YVA_Click;
-            // 
-            // openFileDialog_YVA
-            // 
-            openFileDialog_YVA.FileName = "openFileDialog1";
-            // 
-            // contextMenuStripProject_YVA
-            // 
-            contextMenuStripProject_YVA.ImageScalingSize = new Size(24, 24);
-            contextMenuStripProject_YVA.Name = "contextMenuStripProject_YVA";
-            contextMenuStripProject_YVA.Size = new Size(61, 4);
-            // 
-            // tabControl_YVA
-            // 
-            tabControl_YVA.Controls.Add(tabPageSearch_YVA);
-            tabControl_YVA.Location = new Point(935, 54);
-            tabControl_YVA.Name = "tabControl_YVA";
-            tabControl_YVA.SelectedIndex = 0;
-            tabControl_YVA.Size = new Size(431, 150);
-            tabControl_YVA.TabIndex = 3;
-            // 
-            // tabPageSearch_YVA
-            // 
-            tabPageSearch_YVA.Controls.Add(buttonSearch_YVA);
-            tabPageSearch_YVA.Controls.Add(textBoxSearch_YVA);
-            tabPageSearch_YVA.Location = new Point(4, 34);
-            tabPageSearch_YVA.Name = "tabPageSearch_YVA";
-            tabPageSearch_YVA.Padding = new Padding(3);
-            tabPageSearch_YVA.Size = new Size(423, 112);
-            tabPageSearch_YVA.TabIndex = 0;
-            tabPageSearch_YVA.Text = "Поиск";
-            tabPageSearch_YVA.UseVisualStyleBackColor = true;
-            // 
-            // buttonSearch_YVA
-            // 
-            buttonSearch_YVA.BackgroundImage = (Image)resources.GetObject("buttonSearch_YVA.BackgroundImage");
-            buttonSearch_YVA.BackgroundImageLayout = ImageLayout.Zoom;
-            buttonSearch_YVA.Location = new Point(329, 18);
-            buttonSearch_YVA.Name = "buttonSearch_YVA";
-            buttonSearch_YVA.Size = new Size(78, 78);
-            buttonSearch_YVA.TabIndex = 1;
-            buttonSearch_YVA.UseVisualStyleBackColor = true;
-            buttonSearch_YVA.Click += buttonSearch_YVA_Click;
-            // 
-            // textBoxSearch_YVA
-            // 
-            textBoxSearch_YVA.Location = new Point(17, 42);
-            textBoxSearch_YVA.Name = "textBoxSearch_YVA";
-            textBoxSearch_YVA.Size = new Size(306, 31);
-            textBoxSearch_YVA.TabIndex = 0;
             // 
             // VehicleType
             // 
@@ -344,15 +279,140 @@
             Notes.ReadOnly = true;
             Notes.Width = 150;
             // 
+            // buttonAbout_YVA
+            // 
+            buttonAbout_YVA.BackgroundImage = (Image)resources.GetObject("buttonAbout_YVA.BackgroundImage");
+            buttonAbout_YVA.BackgroundImageLayout = ImageLayout.Center;
+            buttonAbout_YVA.FlatStyle = FlatStyle.Popup;
+            buttonAbout_YVA.Location = new Point(374, 9);
+            buttonAbout_YVA.Name = "buttonAbout_YVA";
+            buttonAbout_YVA.Size = new Size(39, 39);
+            buttonAbout_YVA.TabIndex = 2;
+            toolTip_YVA.SetToolTip(buttonAbout_YVA, "Справка о программе");
+            buttonAbout_YVA.UseVisualStyleBackColor = true;
+            buttonAbout_YVA.Click += buttonAbout_YVA_Click;
+            // 
+            // openFileDialog_YVA
+            // 
+            openFileDialog_YVA.FileName = "openFileDialog1";
+            // 
+            // contextMenuStripProject_YVA
+            // 
+            contextMenuStripProject_YVA.ImageScalingSize = new Size(24, 24);
+            contextMenuStripProject_YVA.Name = "contextMenuStripProject_YVA";
+            contextMenuStripProject_YVA.Size = new Size(61, 4);
+            // 
+            // buttonSearch_YVA
+            // 
+            buttonSearch_YVA.BackgroundImage = (Image)resources.GetObject("buttonSearch_YVA.BackgroundImage");
+            buttonSearch_YVA.BackgroundImageLayout = ImageLayout.Zoom;
+            buttonSearch_YVA.Location = new Point(329, 18);
+            buttonSearch_YVA.Name = "buttonSearch_YVA";
+            buttonSearch_YVA.Size = new Size(78, 78);
+            buttonSearch_YVA.TabIndex = 1;
+            buttonSearch_YVA.Tag = "";
+            toolTip_YVA.SetToolTip(buttonSearch_YVA, "Поиск по введённым данным");
+            buttonSearch_YVA.UseVisualStyleBackColor = true;
+            buttonSearch_YVA.Click += buttonSearch_YVA_Click;
+            // 
+            // buttonUserManual_YVA
+            // 
+            buttonUserManual_YVA.BackgroundImage = (Image)resources.GetObject("buttonUserManual_YVA.BackgroundImage");
+            buttonUserManual_YVA.BackgroundImageLayout = ImageLayout.Zoom;
+            buttonUserManual_YVA.Location = new Point(24, 228);
+            buttonUserManual_YVA.Name = "buttonUserManual_YVA";
+            buttonUserManual_YVA.Size = new Size(112, 112);
+            buttonUserManual_YVA.TabIndex = 4;
+            toolTip_YVA.SetToolTip(buttonUserManual_YVA, "Введение в приложение");
+            buttonUserManual_YVA.UseVisualStyleBackColor = true;
+            buttonUserManual_YVA.Click += buttonUserManual_YVA_CLick;
+            // 
+            // tabControl_YVA
+            // 
+            tabControl_YVA.Controls.Add(tabPageSearch_YVA);
+            tabControl_YVA.Location = new Point(3, 45);
+            tabControl_YVA.Name = "tabControl_YVA";
+            tabControl_YVA.SelectedIndex = 0;
+            tabControl_YVA.Size = new Size(431, 150);
+            tabControl_YVA.TabIndex = 3;
+            // 
+            // tabPageSearch_YVA
+            // 
+            tabPageSearch_YVA.Controls.Add(buttonSearch_YVA);
+            tabPageSearch_YVA.Controls.Add(textBoxSearch_YVA);
+            tabPageSearch_YVA.Location = new Point(4, 34);
+            tabPageSearch_YVA.Name = "tabPageSearch_YVA";
+            tabPageSearch_YVA.Padding = new Padding(3);
+            tabPageSearch_YVA.Size = new Size(423, 112);
+            tabPageSearch_YVA.TabIndex = 0;
+            tabPageSearch_YVA.Text = "Поиск";
+            tabPageSearch_YVA.UseVisualStyleBackColor = true;
+            // 
+            // textBoxSearch_YVA
+            // 
+            textBoxSearch_YVA.Location = new Point(17, 42);
+            textBoxSearch_YVA.Name = "textBoxSearch_YVA";
+            textBoxSearch_YVA.Size = new Size(306, 31);
+            textBoxSearch_YVA.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(labelUserManual_YVA);
+            panel1.Controls.Add(buttonUserManual_YVA);
+            panel1.Controls.Add(buttonAbout_YVA);
+            panel1.Controls.Add(tabControl_YVA);
+            panel1.Dock = DockStyle.Right;
+            panel1.Location = new Point(953, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(425, 619);
+            panel1.TabIndex = 4;
+            // 
+            // labelUserManual_YVA
+            // 
+            labelUserManual_YVA.AutoSize = true;
+            labelUserManual_YVA.Location = new Point(162, 272);
+            labelUserManual_YVA.Name = "labelUserManual_YVA";
+            labelUserManual_YVA.Size = new Size(234, 25);
+            labelUserManual_YVA.TabIndex = 5;
+            labelUserManual_YVA.Text = "Руководство пользователя";
+            // 
+            // groupBoxRoutes_YVA
+            // 
+            groupBoxRoutes_YVA.Controls.Add(dataGridView_YVA);
+            groupBoxRoutes_YVA.Dock = DockStyle.Fill;
+            groupBoxRoutes_YVA.Location = new Point(0, 0);
+            groupBoxRoutes_YVA.Name = "groupBoxRoutes_YVA";
+            groupBoxRoutes_YVA.Size = new Size(953, 577);
+            groupBoxRoutes_YVA.TabIndex = 5;
+            groupBoxRoutes_YVA.TabStop = false;
+            groupBoxRoutes_YVA.Text = "Маршруты";
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(menuStrip_YVA);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(953, 42);
+            panel2.TabIndex = 6;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(groupBoxRoutes_YVA);
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(0, 42);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(953, 577);
+            panel3.TabIndex = 7;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1378, 619);
-            Controls.Add(tabControl_YVA);
-            Controls.Add(buttonAbout_YVA);
-            Controls.Add(groupBoxValues_YVA);
-            Controls.Add(menuStrip_YVA);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip_YVA;
@@ -361,13 +421,17 @@
             Text = "Городской транспорт";
             menuStrip_YVA.ResumeLayout(false);
             menuStrip_YVA.PerformLayout();
-            groupBoxValues_YVA.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_YVA).EndInit();
             tabControl_YVA.ResumeLayout(false);
             tabPageSearch_YVA.ResumeLayout(false);
             tabPageSearch_YVA.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            groupBoxRoutes_YVA.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            panel3.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -378,7 +442,6 @@
         private ToolStripMenuItem SaveFileButton_YVA;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem ToolStripMenuItemExit_YVA;
-        private GroupBox groupBoxValues_YVA;
         private DataGridView dataGridView_YVA;
         private ToolStripMenuItem строкиToolStripMenuItem;
         private ToolStripMenuItem EditEnableButton_YVA;
@@ -397,7 +460,6 @@
         private TextBox textBoxSearch_YVA;
         private ToolStripMenuItem помощьToolStripMenuItem;
         private ToolStripMenuItem buttonStatistics_YVA;
-        private ToolStripMenuItem buttonUserManual_YVA;
         private DataGridViewTextBoxColumn VehicleType;
         private DataGridViewTextBoxColumn RouteNumber;
         private DataGridViewTextBoxColumn StartDate;
@@ -406,5 +468,11 @@
         private DataGridViewTextBoxColumn TimeSpanRoute;
         private DataGridViewTextBoxColumn TransportNum;
         private DataGridViewTextBoxColumn Notes;
+        private Panel panel1;
+        private GroupBox groupBoxRoutes_YVA;
+        private Panel panel2;
+        private Panel panel3;
+        private Button buttonUserManual_YVA;
+        private Label labelUserManual_YVA;
     }
 }

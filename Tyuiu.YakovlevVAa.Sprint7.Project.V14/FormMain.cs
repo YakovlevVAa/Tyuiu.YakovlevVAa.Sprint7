@@ -65,7 +65,7 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                     RouteNumComplete.Add(this.dataGridView_YVA.Rows[i].Cells[1].Value.ToString());
                     RouteNumComplete.Add(this.dataGridView_YVA.Rows[i].Cells[3].Value.ToString());
                     RouteNumComplete.Add(this.dataGridView_YVA.Rows[i].Cells[4].Value.ToString());
-                    
+
 
                 }
                 this.textBoxSearch_YVA.AutoCompleteCustomSource = RouteNumComplete;
@@ -81,21 +81,27 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
             this.EditEnableButton_YVA.Enabled = true;
             this.EditDisableButton_YVA.Enabled = true;
             this.EditRowsButton_YVA.Enabled = true;
+            this.buttonStatistics_YVA.Enabled = true;
 
 
 
         }
+        public void buttonUserManual_YVA_CLick(object sender, EventArgs e)
+        {
+            FormUserManual formUserManual = new FormUserManual();
+            formUserManual.ShowDialog();
+        }
         public void buttonStatistics_YVA_CLick(object sender, EventArgs e)
         {
-            
+
             if (fileOpened == false)
             {
-                MessageBox.Show("Сначала откройте файл!","Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+                MessageBox.Show("Сначала откройте файл!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
             else
             {
-                FormStatistics formStatistics = new FormStatistics(dataGridView_YVA,CountBuses(), CountMiniBuses());
+                FormStatistics formStatistics = new FormStatistics(dataGridView_YVA, CountBuses(), CountMiniBuses());
                 formStatistics.ShowDialog();
             }
         }
@@ -154,14 +160,14 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                         textBoxSearch_YVA.AutoCompleteCustomSource.Add(this.dataGridView_YVA.Rows[i].Cells[3].Value.ToString());
                         textBoxSearch_YVA.AutoCompleteCustomSource.Add(this.dataGridView_YVA.Rows[i].Cells[4].Value.ToString());
 
-                        
+
                     }
                 }
             }
         }
-        
 
-       
+
+
         public void buttonAddRow_YVA_Click(object sender, EventArgs e)
         {
 
@@ -199,9 +205,9 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
         public void buttonSave_YVA_Click(object sender, EventArgs e)
         {
             this.saveFileDialogProject_YVA.FileName = "OutPutRoutes.csv";
-            
+
             string path = "c:\\DataSprint7\\OutPutRoutes.csv";
-            
+
             int row = this.dataGridView_YVA.RowCount;
             int column = this.dataGridView_YVA.ColumnCount;
             string str = "";
@@ -213,7 +219,7 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                     List<string> values = new List<string>();
                     foreach (DataGridViewCell cell in rows.Cells)
                     {
-                        values.Add(cell.Value?.ToString()??"");
+                        values.Add(cell.Value?.ToString() ?? "");
                     }
                     string line = string.Join(",", values);
                     lines.Add(line);
@@ -287,6 +293,7 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
         }
         private void dataGridView_YVA_CellValidate(object sender, DataGridViewCellValidatingEventArgs e)
         {
+            
             if (e.ColumnIndex == 2)
             {
                 DateTime dateValue;
@@ -327,11 +334,12 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
             }
             if (e.ColumnIndex == 6)
             {
-                if (!System.Text.RegularExpressions.Regex.IsMatch(e.FormattedValue.ToString(), @"^[A-Я][0-9]{3}[A-Я]{2}$"))
+                if ((!System.Text.RegularExpressions.Regex.IsMatch(e.FormattedValue.ToString(), @"^[A-Я][0-9]{3}[A-Я]{2}$")) || System.Text.RegularExpressions.Regex.IsMatch(e.FormattedValue.ToString(), @"[A-Za-z]"))
                 {
-                    MessageBox.Show("Номер транспорта не соответствует формату А122БВ", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Номер транспорта не соответствует формату А000АА", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    e.Cancel = true;
                 }
-                
+
             }
         }
         private void buttonSearch_YVA_Click(object sender, EventArgs e)
@@ -356,14 +364,14 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
         private void dataGridView_YVA_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             var editedValue = dataGridView_YVA.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
-            
-            if (!string.IsNullOrEmpty(editedValue) && !RouteNumComplete.Contains(editedValue) && (e.ColumnIndex == 1) && (e.ColumnIndex == 3)&& (e.ColumnIndex == 4))
+
+            if (!string.IsNullOrEmpty(editedValue) && !RouteNumComplete.Contains(editedValue) && (e.ColumnIndex == 1) && (e.ColumnIndex == 3) && (e.ColumnIndex == 4))
             {
                 // Добавляем значение в коллекцию автозаполнения
                 RouteNumComplete.Add(editedValue);
                 // Добавляем значение в AutoCompleteCustomSource для textBoxSearch
                 textBoxSearch_YVA.AutoCompleteCustomSource.Add(editedValue);
-               
+
             }
         }
         private void dataGridView_YVA_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -393,11 +401,26 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                     // Получаем старое значение из Tag, которое мы сохранили во время начала редактирования
                     string oldValue = dataGridView_YVA.Tag as string;
 
-                    // Удаляем старое значение из RouteNumComplete, если оно не пустое
+                    
+                    // Удаление старого значения из AutoComplete, если оно больше не встречается в столбце
                     if (!string.IsNullOrEmpty(oldValue))
                     {
-                        RouteNumComplete.Remove(oldValue);
-                        textBoxSearch_YVA.AutoCompleteCustomSource.Remove(oldValue);
+                        bool exists = false;
+                        foreach (DataGridViewRow row in dataGridView_YVA.Rows)
+                        {
+                            if (row.Cells[columnIndex].Value?.ToString() == oldValue)
+                            {
+                                exists = true;
+                                break;
+                            }
+                        }
+
+                        // Если старое значение больше не встречается в столбце, то удаляем его
+                        if (!exists)
+                        {
+                            RouteNumComplete.Remove(oldValue);
+                            textBoxSearch_YVA.AutoCompleteCustomSource.Remove(oldValue);
+                        }
                     }
 
                     // Получаем новое значение из ячейки
@@ -412,6 +435,8 @@ namespace Tyuiu.YakovlevVAa.Sprint7.Project.V14
                 }
             }
         }
+
+        
     }
 }
 
